@@ -1,0 +1,16 @@
+/* 2-Column Left */
+
+#container {
+	float: right;
+	margin: 0 0 0 -240px;
+	width: 100%;
+}
+#content {
+	margin: 0 20px 0 280px;
+}
+#primary,
+#secondary {
+	float: left;
+	overflow: hidden;
+	width: 220px;
+}

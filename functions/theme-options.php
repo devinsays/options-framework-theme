@@ -77,9 +77,9 @@ $options[] = array( "name" => "Custom Logo",
 					
 $url =  OF_DIRECTORY . '/functions/images/';
 $options[] = array( "name" => "Main Layout",
-					"desc" => "Select main content and sidebar alignment. Choose between 2 or 3 column layout.",
+					"desc" => "Select main content and sidebar alignment.",
 					"id" => $shortname."_layout",
-					"std" => "2c-l-fixed",
+					"std" => "2c-r-fixed",
 					"type" => "images",
 					"options" => array(
 						'2c-r-fixed' => $url . '2cr.png',

@@ -79,11 +79,11 @@ $url =  OF_DIRECTORY . '/functions/images/';
 $options[] = array( "name" => "Main Layout",
 					"desc" => "Select main content and sidebar alignment.",
 					"id" => $shortname."_layout",
-					"std" => "2c-r-fixed",
+					"std" => "layout-2cr",
 					"type" => "images",
 					"options" => array(
-						'2c-r-fixed' => $url . '2cr.png',
-						'2c-l-fixed' => $url . '2cl.png')
+						'layout-2cr' => $url . '2cr.png',
+						'layout-2cl' => $url . '2cl.png')
 					);
 $options[] = array( "name" => "Custom Favicon",
 					"desc" => "Upload a 16px x 16px Png/Gif image that will represent your website's favicon.",

@@ -6,6 +6,9 @@
 
 \f0\fs24 \cf0 Options Framework 0.2\
 \
+- Fixed some minor css bugs\
+- Changed layouts to be set through body classes rather than stylesheets.\
+\
 Options Framework 0.1\
 \
 - Initial release.

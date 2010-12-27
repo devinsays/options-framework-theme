@@ -1,6 +1,6 @@
 <?php
 
-/* These are functions specific to these options settings and this theme */
+/* These are functions specific to the included option settings and this theme */
 
 /*-----------------------------------------------------------------------------------*/
 /* Theme Header Output - wp_head() */
@@ -11,13 +11,6 @@
 if (!function_exists('optionsframework_wp_head')) {
 	function optionsframework_wp_head() { 
 		$shortname =  get_option('of_shortname');
-	
-		//Layouts
-		 $layout = get_option($shortname .'_layout');
-		 if ($layout == '') {
-		 	$layout = '2c-r-fixed';
-		 }
-	     echo '<link href="'. OF_DIRECTORY .'/layouts/'. $layout . '.css" rel="stylesheet" type="text/css" />'."\n";
 	    
 		//Styles
 		 if(!isset($_REQUEST['style']))
@@ -64,6 +57,25 @@ function of_head_css() {
 			echo $output;
 		}
 	
+}
+
+/*-----------------------------------------------------------------------------------*/
+/* Add Body Classes for Layout
+/*-----------------------------------------------------------------------------------*/
+
+// This used to be done through an additional stylesheet call, but it seemed like
+// a lot of extra files for something so simple. Adds a body class to indicate sidebar position.
+
+add_filter('body_class','of_body_class');
+ 
+function of_body_class($classes) {
+	$shortname =  get_option('of_shortname');
+	$layout = get_option($shortname .'_layout');
+	if ($layout == '') {
+		$layout = 'layout-2cr';
+	}
+	$classes[] = $layout;
+	return $classes;
 }
 
 /*-----------------------------------------------------------------------------------*/

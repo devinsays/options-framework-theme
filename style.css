@@ -5,14 +5,33 @@ Description: Sample options panel to help speed development.
 Author: Devin Price
 Author URI: http://wptheming.com/
 Template: twentyten
-Version: 0.1
+Version: 0.2
 
 Based on the Options Panel by Woo Themes.
 */
 
 @import url('../twentyten/style.css');
 
-/* Extra CSS to make custom footers work */
+/* An additional body class is set from theme-functions.php if the left sidebar
+   option is selected.  The styling here is what makes the switch.
+*/
+
+.layout-2cl #container {
+	float: right;
+	margin: 0 0 0 -240px;
+}
+
+.layout-2cl #content {
+	margin: 0 20px 0 280px;
+}
+.layout-2cl #primary,
+.layout-2cl #secondary {
+	float: left;
+	overflow: hidden;
+	width: 220px;
+}
+
+/* CSS to make custom footers work */
 
 #footer-right-side {
 	float: right;

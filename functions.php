@@ -16,12 +16,12 @@ if ( STYLESHEETPATH == TEMPLATEPATH ) {
 
 /* These files build out the options interface.  Likely won't need to edit these. */
 
-require_once (OF_FILEPATH . '/functions/admin-functions.php');		// Custom functions and plugins
-require_once (OF_FILEPATH . '/functions/admin-interface.php');		// Admin Interfaces (options,framework, seo)
+require_once (OF_FILEPATH . '/admin/admin-functions.php');		// Custom functions and plugins
+require_once (OF_FILEPATH . '/admin/admin-interface.php');		// Admin Interfaces (options,framework, seo)
 
 /* These files build out the theme specific options and associated functions. */
 
-require_once (OF_FILEPATH . '/functions/theme-options.php'); 		// Options panel settings and custom settings
-require_once (OF_FILEPATH . '/functions/theme-functions.php'); 	// Theme actions based on options settings
+require_once (OF_FILEPATH . '/admin/theme-options.php'); 		// Options panel settings and custom settings
+require_once (OF_FILEPATH . '/admin/theme-functions.php'); 	// Theme actions based on options settings
 
 ?>

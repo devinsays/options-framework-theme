@@ -26,6 +26,15 @@
 	float: left;
 	margin:10px 20px;
 }
+#of_container #js-warning {
+    color: red;
+    float: left;
+    margin: 20px 10px;
+    width: 330px;
+}
+.js #of_container #js-warning {
+ display: none;
+ }
 #of_container #header .logo h2 {
 	font-style:normal;
 }
@@ -214,6 +223,7 @@ font-family:;
 	margin:0 5px 10px 0;
 	display:none;
 	cursor:pointer;
+	float:left;
 }
 #of_container .controls .of-radio-img-selected {
 	border:3px solid #ccc
@@ -269,6 +279,8 @@ font-family:;
 #of_container .of-save-popup {
 	position:absolute;
 	-moz-border-radius:12px;
+	-webkit-border-radius:12px;
+	border-radius:12px;
 	background:rgba(0, 0, 0, 0.4);
 	color:#fff;
 	font-size:24px;
@@ -302,7 +314,8 @@ font-family:;
 	margin: 0 10px 0 0;
 	padding:3px 10px;
 	background:#FFDFEC;
-	-moz-border-radius:4px
+	-moz-border-radius:4px;
+	-webkit-border:4px;
 }
 .reset-button {
 	float:left;
@@ -314,12 +327,12 @@ font-family:;
 	padding: 10px 20px 0px 20px;
 	height: 35px;
 	text-align: right;
-	border-bottom-left-radius: 6px;
-	-moz-border-radius-bottomleft: 6px;
-	-webkit-border-bottom-left-radius: 6px;
-	-webkit-border-bottom-right-radius: 6px;
-	border-bottom-right-radius: 6px;
 	-moz-border-radius-bottomright: 6px;
+	-moz-border-radius-bottomleft: 6px;
+	-webkit-border-bottom-right-radius: 6px;
+	-webkit-border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
 }
 
 .hide {
@@ -347,6 +360,7 @@ font-family:;
 	background: #ffd1d1;
 	border:1px solid #DFA8A7;
 	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
 	text-align: center;
 	margin-bottom: 15px
 }

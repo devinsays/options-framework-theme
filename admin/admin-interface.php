@@ -174,12 +174,20 @@ function of_load_only() {
 	wp_enqueue_script('color-picker', OF_DIRECTORY.'/admin/js/colorpicker.js', array('jquery'));
 	wp_enqueue_script('ajaxupload', OF_DIRECTORY.'/admin/js/ajaxupload.js', array('jquery'));
 	
-	function of_admin_head() { 
-	?>
+}
+
+function of_admin_head() {
+?>
+    
 <script type="text/javascript" language="javascript">
+
 		jQuery(document).ready(function(){
-			
-			
+		
+		// Race condition to make sure js files are loaded
+		if (typeof AjaxUpload != 'function') { 
+			return ++counter < 6 && window.setTimeout(init, counter * 500);
+		}
+		
 			//Color Picker
 			<?php $options = get_option('of_template');
 			
@@ -463,7 +471,7 @@ function of_load_only() {
 				
 			});
 		</script>
-<?php }
+<?php
 }
 
 /*-----------------------------------------------------------------------------------*/

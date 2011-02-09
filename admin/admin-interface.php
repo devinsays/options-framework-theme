@@ -183,11 +183,6 @@ function of_admin_head() {
 
 		jQuery(document).ready(function(){
 		
-		// Race condition to make sure js files are loaded
-		if (typeof AjaxUpload != 'function') { 
-			return ++counter < 6 && window.setTimeout(init, counter * 500);
-		}
-		
 			//Color Picker
 			<?php $options = get_option('of_template');
 			
@@ -231,34 +226,8 @@ function of_admin_head() {
 		<?php
 		//AJAX Upload
 		?>
-<script type="text/javascript">
+		<script type="text/javascript">
 			jQuery(document).ready(function(){
-			
-			var flip = 0;
-				
-			jQuery('#expand_options').click(function(){
-				if(flip == 0){
-					flip = 1;
-					jQuery('#of_container #of-nav').hide();
-					jQuery('#of_container #content').width(755);
-					jQuery('#of_container .group').add('#of_container .group h2').show();
-	
-					jQuery(this).text('[-]');
-					
-				} else {
-					flip = 0;
-					jQuery('#of_container #of-nav').show();
-					jQuery('#of_container #content').width(595);
-					jQuery('#of_container .group').add('#of_container .group h2').hide();
-					jQuery('#of_container .group:first').show();
-					jQuery('#of_container #of-nav li').removeClass('current');
-					jQuery('#of_container #of-nav li:first').addClass('current');
-					
-					jQuery(this).text('[+]');
-				
-				}
-			
-			});
 			
 				jQuery('.group').hide();
 				jQuery('.group:first').fadeIn();
@@ -348,7 +317,7 @@ function of_admin_head() {
 			
 		
 			//AJAX Upload
-			jQuery('.image_upload_button').each(function(){
+			jQuery('#ofform .image_upload_button').each(function(){
 			
 			var clickedObject = jQuery(this);
 			var clickedID = jQuery(this).attr('id');	
@@ -386,7 +355,6 @@ function of_admin_head() {
 					}
 					else{
 						var buildReturn = '<img class="hide of-option-image" id="image_'+clickedID+'" src="'+response+'" alt="" />';
-
 						jQuery(".upload-error").remove();
 						jQuery("#image_" + clickedID).remove();	
 						clickedObject.parent().after(buildReturn);
@@ -420,14 +388,11 @@ function of_admin_head() {
 						image_to_remove.fadeOut(500,function(){ jQuery(this).remove(); });
 						button_to_hide.fadeOut();
 						clickedObject.parent().prev('input').val('');
-						
-						
-						
 					});
 					
 					return false; 
 					
-				});   	 	
+				}); 
 			
 			//Save everything else
 			jQuery('#ofform').submit(function(){

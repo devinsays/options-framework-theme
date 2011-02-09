@@ -87,7 +87,6 @@
 	margin-bottom: 10px;
 }
 #of_container #content .section h3.heading {
-font-family:;
 	margin: 10px 0 10px 0;
 	padding: 7px 0px;
 	border-bottom: 1px solid #e7e7e7;
@@ -261,15 +260,6 @@ font-family:;
 #of_container .warning {
 	background: #ffeeee no-repeat 10px center;
 	border: solid #dfbfbf;
-	border-width: 0px 1px 1px 1px;
-	color: #333;
-	font-weight: bold;
-	padding: 10px;
-	text-align: center;
-}
-#of_container .update_available {
-	background: #FFFEEB no-repeat 10px center;
-	border: solid #CCCCCC;
 	border-width: 0px 1px 1px 1px;
 	color: #333;
 	font-weight: bold;

@@ -7,11 +7,11 @@
 /* Set the file path based on whether the Options Framework Theme is a parent theme or child theme */
 
 if ( STYLESHEETPATH == TEMPLATEPATH ) {
-	define('OF_FILEPATH', TEMPLATEPATH);
-	define('OF_DIRECTORY', get_bloginfo('template_directory'));
+	define('OPTIONS_FRAMEWORK_URL', TEMPLATEPATH . '/admin/');
+	define('OPTIONS_FRAMEWORK_DIRECTORY', get_bloginfo('template_directory') . '/admin/');
 } else {
-	define('OF_FILEPATH', STYLESHEETPATH);
-	define('OF_DIRECTORY', get_bloginfo('stylesheet_directory'));
+	define('OPTIONS_FRAMEWORK_URL', STYLESHEETPATH . '/admin/');
+	define('OPTIONS_FRAMEWORK_DIRECTORY', get_bloginfo('stylesheet_directory') . '/admin/');
 }
 
-require_once (OF_FILEPATH . '/admin/options-framework.php');	
+require_once (OPTIONS_FRAMEWORK_URL . 'options-framework.php');

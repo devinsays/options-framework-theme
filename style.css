@@ -1,40 +1,13 @@
-/*   
-Theme Name: Options Framework
-Theme URI: http://wptheming.com/
-Description: Sample options panel to help speed development.
+/*
+Theme Name: Options Framework Theme
+Theme URI: http://wptheming.com
+Description: An example/test theme with a complete theme options panel.
 Author: Devin Price
-Author URI: http://wptheming.com/
+Author URI: http://wptheming.com
+Version: 0.3
 Template: twentyten
-Version: 0.2.1
-
-Based on the Options Panel by Woo Themes.
 */
 
 @import url('../twentyten/style.css');
 
-/* An additional body class is set from theme-functions.php if the left sidebar
-   option is selected.  The styling here is what makes the switch.
-*/
-
-.layout-2cl #container {
-	float: right;
-	margin: 0 0 0 -240px;
-}
-
-.layout-2cl #content {
-	margin: 0 20px 0 280px;
-}
-.layout-2cl #primary,
-.layout-2cl #secondary {
-	float: left;
-	overflow: hidden;
-	width: 220px;
-}
-
-/* CSS to make custom footers work */
-
-#footer-right-side {
-	float: right;
-	width: 220px;
-	font-style: italic;
-}
+#header img {display:none;}

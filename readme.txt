@@ -1,3 +1,7 @@
+I am in the process of a complete rewrite of this code based on the Options Framework plugin.  Download the 0.2.1 tag if you want the latest stable version.
+
+--
+
 The Options Frameworks was created to help developers build options into their themes.  This one was built as an example using a child theme of TwentyTen.  To view a video demo of how it works and read the documentation, please visit: http://wptheming.com/options-framework.
 
 Version 0.1 of this theme was coded using WooThemes Canvas as a base (http://www.woothemes.com/2010/02/canvas/).  The Options Framework is actually a slimmed down version of their version in Canvas, and I'd encourage you to check out and support WooThemes if you find this project helpful.

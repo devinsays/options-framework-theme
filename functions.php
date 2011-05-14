@@ -1,10 +1,10 @@
 <?php
 
 /*-----------------------------------------------------------------------------------*/
-/* Options Framework Functions
+/* Options Framework Theme
 /*-----------------------------------------------------------------------------------*/
 
-/* Set the file path based on whether the Options Framework is in a parent theme or child theme */
+/* Set the file path based on whether the Options Framework Theme is a parent theme or child theme */
 
 if ( STYLESHEETPATH == TEMPLATEPATH ) {
 	define('OF_FILEPATH', TEMPLATEPATH);
@@ -14,14 +14,4 @@ if ( STYLESHEETPATH == TEMPLATEPATH ) {
 	define('OF_DIRECTORY', get_bloginfo('stylesheet_directory'));
 }
 
-/* These files build out the options interface.  Likely won't need to edit these. */
-
-require_once (OF_FILEPATH . '/admin/admin-functions.php');		// Custom functions and plugins
-require_once (OF_FILEPATH . '/admin/admin-interface.php');		// Admin Interfaces (options,framework, seo)
-
-/* These files build out the theme specific options and associated functions. */
-
-require_once (OF_FILEPATH . '/admin/theme-options.php'); 		// Options panel settings and custom settings
-require_once (OF_FILEPATH . '/admin/theme-functions.php'); 	// Theme actions based on options settings
-
-?>
+require_once (OF_FILEPATH . '/admin/options-framework.php');	

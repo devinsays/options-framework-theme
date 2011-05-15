@@ -1,5 +1,7 @@
 <?php
 
+if ( !function_exists( 'optionsframework_init' ) ) {
+
 /*-----------------------------------------------------------------------------------*/
 /* Options Framework Theme
 /*-----------------------------------------------------------------------------------*/
@@ -15,3 +17,5 @@ if ( STYLESHEETPATH == TEMPLATEPATH ) {
 }
 
 require_once (OPTIONS_FRAMEWORK_URL . 'options-framework.php');
+
+}

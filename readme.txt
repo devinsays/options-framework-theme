@@ -17,19 +17,13 @@ Please visit [http://wptheming.com/options-framework-plugin](http://wptheming.co
 
 The code is heavily based on the [WooFramework](http://www.woothemes.com/) and their option styles.
 
-== Installation ==
-
-If your theme already has options enabled, they will show up under the apperance menu.
-
-If your theme doesn't have options, you can define them to options.php of your theme and they will instantly show up.  For more on how to do this, visit [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin).
-
 == Frequently Asked Questions ==
 
 = How do I build options for my own theme? =
 
-Download the development version from GitHub [https://github.com/devinsays/options-framework-plugin](https://github.com/devinsays/options-framework-plugin) and copy the "options-check" folder into your themes directory.
+Just drag the admin folder of this theme, options.php and functions.php into the theme of your choice.
 
-The "Options Check" theme is a blueprint for how to work with options.  It includes an example of every option available in the panel and sample output in the theme.
+Options.php is a blueprint for how to work with options.  It includes an example of every option available in the panel and sample output in the theme.
 
 You can also watch the video screencast I have at [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin).
 
@@ -46,10 +40,6 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * multicheck
 * color (a jquery color picker)
 * typography (a set of options to define typography)
-
-== Screenshots ==
-
-1. An example of the "Advanced Options" tag in the "Options Check" theme using this plugin.
 
 == Changelog ==
 

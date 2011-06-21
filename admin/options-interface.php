@@ -194,12 +194,9 @@ function optionsframework_fields() {
 			// Font Weight
 			$output .= '<select class="of-typography of-typography-style" name="'.$option_name.'['.$value['id'].'][style]" id="'. $value['id'].'_style">';
 
-			$styles = array('normal'=>'Normal',
-							'italic'=>'Italic',
-							'bold'=>'Bold',
-							'bold italic'=>'Bold Italic');
-
-			foreach ($styles as $key => $style) {
+			/* Font Style */
+			$styles = of_recognized_font_styles();
+			foreach ( $styles as $key => $style ) {
 				$output .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['style'], $key, false ) . '>'. $style .'</option>';
 			}
 			$output .= '</select>';
@@ -276,7 +273,7 @@ function optionsframework_fields() {
 				$output .= '<h3 class="heading">' . esc_html( $value['name'] ) . '</h3>' . "\n";
 			}
 			if ( $value['desc'] ) {
-				$output .= '<p>'. wp_kses( $value['desc'], $allowedtags) . '</p>' . "\n";
+				$output .= wpautop( wp_kses( $value['desc'], $allowedtags) ) . "\n";
 			}
 			$output .= '<div class="clear"></div></div>' . "\n";
 		break;                       
@@ -288,7 +285,7 @@ function optionsframework_fields() {
 			}
 			$jquery_click_hook = preg_replace('/\W/', '', strtolower($value['name']) );
 			$jquery_click_hook = "of-option-" . $jquery_click_hook;
-			$menu .= '<li><a title="' . esc_attr( $value['name'] ) . '" href="' . esc_attr( '#'.  $jquery_click_hook ) . '">' . esc_html( $value['name'] ) . '</a></li>';
+			$menu .= '<li><a id="'.  esc_attr( $jquery_click_hook ) . '-tab" title="' . esc_attr( $value['name'] ) . '" href="' . esc_attr( '#'.  $jquery_click_hook ) . '">' . esc_html( $value['name'] ) . '</a></li>';
 			$output .= '<div class="group" id="' . esc_attr( $jquery_click_hook ) . '"><h2>' . esc_html( $value['name'] ) . '</h2>' . "\n";
 			break;
 		}

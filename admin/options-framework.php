@@ -3,7 +3,7 @@
 Plugin Name: Options Framework
 Plugin URI: http://www.wptheming.com
 Description: A framework for building theme options.
-Version: 0.6
+Version: 0.8
 Author: Devin Price
 Author URI: http://www.wptheming.com
 License: GPLv2
@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 /* Basic plugin definitions */
 
-define('OPTIONS_FRAMEWORK_VERSION', '0.6');
+define('OPTIONS_FRAMEWORK_VERSION', '0.8');
 
 /* Make sure we don't expose any info if called directly */
 
@@ -41,19 +41,44 @@ if ( !function_exists( 'add_action' ) ) {
 add_action('init', 'optionsframework_rolescheck' );
 
 function optionsframework_rolescheck () {
-	if ( current_user_can('edit_theme_options') ) {
+	if ( current_user_can( 'edit_theme_options' ) ) {
 		// If the user can edit theme options, let the fun begin!
-		add_action('admin_menu', 'optionsframework_add_page');
-		add_action('admin_init', 'optionsframework_init' );
+		add_action( 'admin_menu', 'optionsframework_add_page');
+		add_action( 'admin_init', 'optionsframework_init' );
 		add_action( 'admin_init', 'optionsframework_mlu_init' );
 	}
+}
+
+/* Register plugin activation hooks */
+
+register_activation_hook(__FILE__,'optionsframework_activation_hook');
+
+function optionsframework_activation_hook() {
+	register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
+}
+
+/* When uninstalled, deletes options */
+
+register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
+
+function optionsframework_delete_options() {
+
+	$optionsframework_settings = get_option('optionsframework');
+	
+	// Each theme saves its data in a seperate option, which all gets deleted
+	$knownoptions = $optionsframework_settings['knownoptions'];
+	if ($knownoptions) {
+		foreach ($knownoptions as $key) {
+			delete_option($key);
+		}
+	}
+	delete_option('optionsframework');
 }
 
 /* 
  * Creates the settings in the database by looping through the array
  * we supplied in options.php.  This is a neat way to do it since
- * we won't have to save settings for headers, descriptions, or arguments-
- * and it makes it a little easier to change and set up in my opinion.
+ * we won't have to save settings for headers, descriptions, or arguments.
  *
  * Read more about the Settings API in the WordPress codex:
  * http://codex.wordpress.org/Settings_API
@@ -75,19 +100,26 @@ function optionsframework_init() {
 		require_once dirname( __FILE__ ) . '/options.php';
 	}
 	
-	$optionsframework_settings = get_option('optionsframework');
+	$optionsframework_settings = get_option('optionsframework' );
 	
 	// Updates the unique option id in the database if it has changed
 	optionsframework_option_name();
 	
 	// Gets the unique id, returning a default if it isn't defined
-	$option_name = $optionsframework_settings['id'];
+	if ( isset($optionsframework_settings['id']) ) {
+		$option_name = $optionsframework_settings['id'];
+	}
+	else {
+		$option_name = 'optionsframework';
+	}
 	
-	// Set the option defaults in case they have changed
-	optionsframework_setdefaults();
+	// If the option has no saved data, load the defaults
+	if ( ! get_option($option_name) ) {
+		optionsframework_setdefaults();
+	}
 	
 	// Registers the settings fields and callback
-	register_setting('optionsframework', $option_name, 'optionsframework_validate' );
+	register_setting( 'optionsframework', $option_name, 'optionsframework_validate' );
 }
 
 /* 
@@ -101,7 +133,7 @@ function optionsframework_init() {
  */
 
 function optionsframework_setdefaults() {
-
+	
 	$optionsframework_settings = get_option('optionsframework');
 
 	// Gets the unique option id
@@ -114,7 +146,7 @@ function optionsframework_setdefaults() {
 	 * its associated data.  No need to clutter the database.  
 	 *
 	 */
-	 
+	
 	if ( isset($optionsframework_settings['knownoptions']) ) {
 		$knownoptions =  $optionsframework_settings['knownoptions'];
 		if ( !in_array($option_name, $knownoptions) ) {
@@ -130,32 +162,12 @@ function optionsframework_setdefaults() {
 	
 	// Gets the default options data from the array in options.php
 	$options = optionsframework_options();
-		
-	// If the options haven't been added to the database yet, they are added now
-	foreach ($options as $option) {
 	
-		if ( ($option['type'] != 'heading') && ($option['type'] != 'info') ) {
-			$option_id = preg_replace('/\W/', '', strtolower($option['id']) );
-			
-			// wp_filter_post_kses for strings
-			if (isset($option['std' ]) ) {
-				if ( !is_array($option['std' ]) ) {
-					$values[$option_id] = wp_filter_post_kses($option['std']);
-				} else {
-					foreach ($option['std' ] as $key => $value) {
-						$optionarray[$key] = wp_filter_post_kses($value);
-					}
-					$values[$option_id] = $optionarray;
-					unset($optionarray);
-				}
-			} else {
-				$value = '';
-			}
-		}
-	}
+	// If the options haven't been added to the database yet, they are added now
+	$values = of_get_default_values();
 	
 	if ( isset($values) ) {
-		add_option($option_name, $values);
+		add_option( $option_name, $values ); // Add option with default settings
 	}
 }
 
@@ -176,8 +188,8 @@ function optionsframework_add_page() {
 /* Loads the CSS */
 
 function optionsframework_load_styles() {
-	wp_enqueue_style('admin-style', OPTIONS_FRAMEWORK_DIRECTORY .'css/admin-style.css');
-	wp_enqueue_style('color-picker', OPTIONS_FRAMEWORK_DIRECTORY .'css/colorpicker.css');
+	wp_enqueue_style('admin-style', OPTIONS_FRAMEWORK_DIRECTORY.'css/admin-style.css');
+	wp_enqueue_style('color-picker', OPTIONS_FRAMEWORK_DIRECTORY.'css/colorpicker.css');
 }	
 
 /* Loads the javascript */
@@ -189,8 +201,8 @@ function optionsframework_load_scripts() {
 	
 	// Enqueued scripts
 	wp_enqueue_script('jquery-ui-core');
-	wp_enqueue_script('color-picker', OPTIONS_FRAMEWORK_DIRECTORY . 'js/colorpicker.js', array('jquery'));
-	wp_enqueue_script('options-custom', OPTIONS_FRAMEWORK_DIRECTORY . 'js/options-custom.js', array('jquery'));
+	wp_enqueue_script('color-picker', OPTIONS_FRAMEWORK_DIRECTORY.'js/colorpicker.js', array('jquery'));
+	wp_enqueue_script('options-custom', OPTIONS_FRAMEWORK_DIRECTORY.'js/options-custom.js', array('jquery'));
 }
 
 function of_admin_head() {
@@ -260,105 +272,110 @@ function optionsframework_page() {
 }
 }
 
-/* 
- * Data sanitization!
+/** 
+ * Validate Options.
  *
  * This runs after the submit/reset button has been clicked and
  * validates the inputs.
  *
+ * @uses $_POST['reset']
+ * @uses $_POST['update']
  */
+function optionsframework_validate( $input ) {
 
-function optionsframework_validate($input) {
+	/*
+	 * Restore Defaults.
+	 *
+	 * In the event that the user clicked the "Restore Defaults"
+	 * button, the options defined in the theme's options.php
+	 * file will be added to the option for the active theme.
+	 */
+	 
+	if ( isset( $_POST['reset'] ) ) {
+		add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'optionsframework' ), 'updated fade' );
+		return of_get_default_values();
+	}
 
-	$optionsframework_settings = get_option('optionsframework');
+	/*
+	 * Udpdate Settings.
+	 */
+	 
+	if ( isset( $_POST['update'] ) ) {
+		$clean = array();
+		$options = optionsframework_options();
+		foreach ( $options as $option ) {
+
+			if ( ! isset( $option['id'] ) ) {
+				continue;
+			}
+
+			if ( ! isset( $option['type'] ) ) {
+				continue;
+			}
+
+			$id = preg_replace( '/\W/', '', strtolower( $option['id'] ) );
+
+			// Set checkbox to false if it wasn't sent in the $_POST
+			if ( 'checkbox' == $option['type'] && ! isset( $input[$id] ) ) {
+				$input[$id] = '0';
+			}
+
+			// Set each item in the multicheck to false if it wasn't sent in the $_POST
+			if ( 'multicheck' == $option['type'] && ! isset( $input[$id] ) ) {
+				foreach ( $option['options'] as $key => $value ) {
+					$input[$id][$key] = '0';
+				}
+			}
+
+			// For a value to be submitted to database it must pass through a sanitization filter
+			if ( has_filter( 'of_sanitize_' . $option['type'] ) ) {
+				$clean[$id] = apply_filters( 'of_sanitize_' . $option['type'], $input[$id], $option );
+			}
+		}
+
+		add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'optionsframework' ), 'updated fade' );
+		return $clean;
+	}
+
+	/*
+	 * Request Not Recognized.
+	 */
 	
-	// Gets the unique option id
-	$option_name = $optionsframework_settings['id'];
-	
-	// If the reset button was clicked
-	if (!empty($_POST['reset'])) {
-		// If options are deleted sucessfully update the error message
-		if (delete_option($option_name) ) {
-			add_settings_error('options-framework', 'restore_defaults', __('Default options restored.'), 'updated fade');
+	return of_get_default_values();
+}
+
+/**
+ * Format Configuration Array.
+ *
+ * Get an array of all default values as set in
+ * options.php. The 'id','std' and 'type' keys need
+ * to be defined in the configuration array. In the
+ * event that these keys are not present the option
+ * will not be included in this function's output.
+ *
+ * @return    array     Rey-keyed options configuration array.
+ *
+ * @access    private
+ */
+ 
+function of_get_default_values() {
+	$output = array();
+	$config = optionsframework_options();
+	foreach ( (array) $config as $option ) {
+		if ( ! isset( $option['id'] ) ) {
+			continue;
+		}
+		if ( ! isset( $option['std'] ) ) {
+			continue;
+		}
+		if ( ! isset( $option['type'] ) ) {
+			continue;
+		}
+		if ( has_filter( 'of_sanitize_' . $option['type'] ) ) {
+			$output[$option['id']] = apply_filters( 'of_sanitize_' . $option['type'], $option['std'], $option );
 		}
 	}
-	
-	else
-	
-	{
-	
-	if (!empty($_POST['update'])) {
-	
-		$clean = array();
-
-		// Get the options array we have defined in options.php
-		$options = optionsframework_options();
-		
-		foreach ($options as $option) {
-			
-			// Verify that the option has an id
-			if ( isset ($option['id']) ) {
-			
-				// Keep all ids lowercase with no spaces
-				$id = preg_replace( '/\W/', '', strtolower( $option['id'] ) );
-			
-				// Set checkbox to false if it wasn't sent in the $_POST
-				if ( 'checkbox' == $option['type'] && ! isset( $input[$id] ) ) {
-					$input[$id] = "0";
-				}
-				
-				// Set each item in the multicheck to false if it wasn't sent in the $_POST
-				if ( 'multicheck' == $option['type'] && ! isset( $input[$id] ) ) {
-					foreach ( $option['options'] as $key => $value ) {
-						$input[$id][$key] = "0";
-					} 
-				}
-				
-				// For a value to be submitted to database it must pass through a sanitization filter
-				if ( isset ( $input[$id] ) && has_filter('of_sanitize_' . $option['type']) ) {
-					$clean[$id] = apply_filters( 'of_sanitize_' . $option['type'], $input[$id], $option );
-				}
-				
-			} // end isset $input
-			
-		} // end isset $id
-		
-	} // end foreach
-	
-	if ( isset($clean) ) {
-		add_settings_error('options-framework', 'save_options', __('Options saved.'), 'updated fade');
-		return $clean; // Return validated input
-	}
-	
-	} // end $_POST['update']
-	
-}
-
-
-/* 
- * Helper function to return the theme option value. If no value has been saved, it returns $default.
- * Needed because options are saved as serialized strings.
- *
- */
-	
-if ( !function_exists( 'of_get_option' ) ) {
-function of_get_option($name, $default = false) {
-	
-	$optionsframework_settings = get_option('optionsframework');
-	
-	// Gets the unique option id
-	$option_name = $optionsframework_settings['id'];
-
-	if ( get_option($option_name) ) {
-		$options = get_option($option_name);
-	}
-	
-	if ( !empty($options[$name]) ) {
-		return $options[$name];
-	} else {
-		return $default;
-	}
-}
+	return $output;
 }
 
 /**
@@ -377,4 +394,31 @@ function optionsframework_adminbar() {
 		'title' => __( 'Theme Options' ),
 		'href' => admin_url( 'themes.php?page=options-framework' )
   ));
+}
+
+if ( ! function_exists( 'of_get_option' ) ) {
+
+	/**
+	 * Get Option.
+	 *
+	 * Helper function to return the theme option value.
+	 * If no value has been saved, it returns $default.
+	 * Needed because options are saved as serialized strings.
+	 */
+	 
+	function of_get_option( $name, $default = false ) {
+		$config = get_option( 'optionsframework' );
+
+		if ( ! isset( $config['id'] ) ) {
+			return $default;
+		}
+
+		$options = get_option( $config['id'] );
+
+		if ( isset( $options[$name] ) ) {
+			return $options[$name];
+		}
+
+		return $default;
+	}
 }

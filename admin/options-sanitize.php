@@ -153,6 +153,7 @@ add_filter( 'of_sanitize_typography', 'of_sanitize_typography' );
 
 function of_sanitize_font_size( $value ) {
 	$recognized = of_recognized_font_sizes();
+	$value = preg_replace('/px/','', $value);
 	if ( in_array( (int) $value, $recognized ) ) {
 		return (int) $value;
 	}
@@ -187,12 +188,13 @@ add_filter( 'of_font_face', 'of_sanitize_font_face' );
  *
  */
 function of_recognized_background_repeat() {
-	return array(
-		'none'     => 'No Repeat',
-		'repeat-x' => 'Repeat Horizontally',
-		'repeat-y' => 'Repeat Vertically',
-		'repeat'   => 'Repeat All',
+	$default = array(
+		'no-repeat' => 'No Repeat',
+		'repeat-x'  => 'Repeat Horizontally',
+		'repeat-y'  => 'Repeat Vertically',
+		'repeat'    => 'Repeat All',
 		);
+	return apply_filters( 'of_recognized_background_repeat', $default );
 }
 
 /**
@@ -202,17 +204,18 @@ function of_recognized_background_repeat() {
  *
  */
 function of_recognized_background_position() {
-	return array(
-		'top left' => 'Top Left',
-		'top center' => 'Top Center',
-		'top right' => 'Top Right',
-		'center left' => 'Middle Left',
+	$default = array(
+		'top left'      => 'Top Left',
+		'top center'    => 'Top Center',
+		'top right'     => 'Top Right',
+		'center left'   => 'Middle Left',
 		'center center' => 'Middle Center',
-		'center right' => 'Middle Right',
-		'bottom left' => 'Bottom Left',
+		'center right'  => 'Middle Right',
+		'bottom left'   => 'Bottom Left',
 		'bottom center' => 'Bottom Center',
-		'bottom right' => 'Bottom Right'
+		'bottom right'  => 'Bottom Right'
 		);
+	return apply_filters( 'of_recognized_background_position', $default );
 }
 
 /**
@@ -222,10 +225,11 @@ function of_recognized_background_position() {
  *
  */
 function of_recognized_background_attachment() {
-	return array(
+	$default = array(
 		'scroll' => 'Scroll Normally',
-		'fixed' => 'Fixed in Place'
+		'fixed'  => 'Fixed in Place'
 		);
+	return apply_filters( 'of_recognized_background_attachment', $default );
 }
 
 /**
@@ -272,7 +276,7 @@ function of_recognized_font_sizes() {
  *
  */
 function of_recognized_font_faces() {
-	return array(
+	$default = array(
 		'arial'     => 'Arial',
 		'verdana'   => 'Verdana, Geneva',
 		'trebuchet' => 'Trebuchet',
@@ -282,6 +286,7 @@ function of_recognized_font_faces() {
 		'palatino'  => 'Palatino',
 		'helvetica' => 'Helvetica*'
 		);
+	return apply_filters( 'of_recognized_font_faces', $default );
 }
 
 /**
@@ -295,12 +300,13 @@ function of_recognized_font_faces() {
  *
  */
 function of_recognized_font_styles() {
-	return array(
+	$default = array(
 		'normal'      => 'Normal',
 		'italic'      => 'Italic',
 		'bold'        => 'Bold',
 		'bold italic' => 'Bold Italic'
 		);
+	return apply_filters( 'of_recognized_font_styles', $default );
 }
 
 /**

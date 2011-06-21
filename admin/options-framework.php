@@ -49,32 +49,6 @@ function optionsframework_rolescheck () {
 	}
 }
 
-/* Register plugin activation hooks */
-
-register_activation_hook(__FILE__,'optionsframework_activation_hook');
-
-function optionsframework_activation_hook() {
-	register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
-}
-
-/* When uninstalled, deletes options */
-
-register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
-
-function optionsframework_delete_options() {
-
-	$optionsframework_settings = get_option('optionsframework');
-	
-	// Each theme saves its data in a seperate option, which all gets deleted
-	$knownoptions = $optionsframework_settings['knownoptions'];
-	if ($knownoptions) {
-		foreach ($knownoptions as $key) {
-			delete_option($key);
-		}
-	}
-	delete_option('optionsframework');
-}
-
 /* 
  * Creates the settings in the database by looping through the array
  * we supplied in options.php.  This is a neat way to do it since

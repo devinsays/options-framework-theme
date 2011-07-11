@@ -5,9 +5,9 @@ Description: An example/test theme with a complete theme options panel.
 Author: Devin Price
 Author URI: http://wptheming.com
 Version: 0.8
-Template: twentyten
+Template: twentyeleven
 */
 
-@import url('../twentyten/style.css');
+@import url('../twentyeleven/style.css');
 
-#header img {display:none;}
+#branding hgroup, #searchform, #branding img, #access {display:none;}

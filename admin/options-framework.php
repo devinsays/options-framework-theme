@@ -49,6 +49,14 @@ function optionsframework_rolescheck () {
 	}
 }
 
+/* Loads the file for option sanitization */
+
+add_action('init', 'optionsframework_load_sanitization' );
+
+function optionsframework_load_sanitization() {
+	require_once dirname( __FILE__ ) . '/options-sanitize.php';
+}
+
 /* 
  * Creates the settings in the database by looping through the array
  * we supplied in options.php.  This is a neat way to do it since
@@ -62,7 +70,6 @@ function optionsframework_rolescheck () {
 function optionsframework_init() {
 
 	// Include the required files
-	require_once dirname( __FILE__ ) . '/options-sanitize.php';
 	require_once dirname( __FILE__ ) . '/options-interface.php';
 	require_once dirname( __FILE__ ) . '/options-medialibrary-uploader.php';
 	
@@ -199,47 +206,31 @@ function of_admin_head() {
 
 if ( !function_exists( 'optionsframework_page' ) ) {
 function optionsframework_page() {
-
-	// Get the theme name so we can display it up top
-	$themename = get_theme_data(STYLESHEETPATH . '/style.css');
-	$themename = $themename['Name'];
-	
+	$return = optionsframework_fields();
 	settings_errors();
 	?>
     
 	<div class="wrap">
     <?php screen_icon( 'themes' ); ?>
-	<h2><?php esc_html_e( 'Theme Options' ); ?></h2>
+    <h2 class="nav-tab-wrapper">
+        <?php echo $return[1]; ?>
+    </h2>
     
-    <div id="of_container">
-       <form action="options.php" method="post">
-	  <?php settings_fields('optionsframework'); ?>
+    <div class="metabox-holder">
+    <div id="optionsframework" class="postbox">
+		<form action="options.php" method="post">
+		<?php settings_fields('optionsframework'); ?>
 
-        <div id="header">
-          <div class="logo">
-            <h2><?php esc_html_e( $themename ); ?></h2>
-          </div>
-          <div class="clear"></div>
-        </div>
-        <div id="main">
-        <?php $return = optionsframework_fields(); ?>
-          <div id="of-nav">
-            <ul>
-              <?php echo $return[1]; ?>
-            </ul>
-          </div>
-          <div id="content">
-            <?php echo $return[0]; /* Settings */ ?>
-          </div>
-          <div class="clear"></div>
-        </div>
-        <div class="of_admin_bar">
+		<?php echo $return[0]; /* Settings */ ?>
+        
+        <div id="optionsframework-submit">
 			<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options' ); ?>" />
             <input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!' ) ); ?>' );" />
+            <div class="clear"></div>
 		</div>
-<div class="clear"></div>
 	</form>
-</div> <!-- / #container -->  
+</div> <!-- / #container -->
+</div>
 </div> <!-- / .wrap -->
 
 <?php

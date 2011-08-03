@@ -56,6 +56,14 @@ function optionsframework_options() {
 	foreach ($options_pages_obj as $page) {
     	$options_pages[$page->ID] = $page->post_title;
 	}
+	
+	// Pull all the posts into an array
+	$options_posts = array();  
+	$options_posts_obj = get_posts('numberposts=99999');
+	$options_posts[''] = 'Select a post:';
+	foreach ($options_posts_obj as $post) {
+    	$options_posts[$post->ID] = $post->post_title;
+	}
 		
 	// If using image radio buttons, define a directory path
 	$imagepath =  get_bloginfo('stylesheet_directory') . '/images/';
@@ -106,10 +114,16 @@ function optionsframework_options() {
 						"options" => $options_categories);
 						
 	$options[] = array( "name" => "Select a Page",
-						"desc" => "Passed an pages with ID and post_title",
+						"desc" => "Passed an array of pages with ID and post_title",
 						"id" => "example_select_pages",
 						"type" => "select",
 						"options" => $options_pages);
+						
+	$options[] = array( "name" => "Select a Post",
+						"desc" => "Passed an array of posts with ID and post_title",
+						"id" => "example_select_posts",
+						"type" => "select",
+						"options" => $options_posts);
 						
 	$options[] = array( "name" => "Input Radio (one)",
 						"desc" => "Radio select with default options 'one'.",

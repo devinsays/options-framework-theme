@@ -59,6 +59,11 @@ get_header(); ?>
                         </dl>
                         
                         <dl>
+                        <dt>type: select</dt>
+                        <dd>of_get_option('example_select_posts'): post id = <?php echo of_get_option('example_select_posts', 'no entry' ); ?></dd>
+                        </dl>
+                        
+                        <dl>
                         <dt>type: radio</dt>
                         <dd>of_get_option('example_radio'): <?php echo of_get_option('example_radio', 'no entry' ); ?></dd>
                         </dl>

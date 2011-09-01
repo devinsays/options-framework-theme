@@ -303,7 +303,11 @@ function optionsframework_fields() {
 			if ( isset( $value['desc'] ) ) {
 				$explain_value = $value['desc'];
 			}
-			$output .= '</div><div class="explain">' . wp_kses( $explain_value, $allowedtags) . '</div>'."\n";
+			
+			$explain_value = wp_kses( $explain_value, $allowedtags);
+			if ( $value['type'] == 'checkbox' ) $explain_value = '<label for="'.esc_attr( $value['id'] ).'">'. $explain_value .'</label>';
+			
+			$output .= '</div><div class="explain">' . $explain_value . '</div>'."\n";
 			$output .= '<div class="clear"></div></div></div>'."\n";
 		}
 	}

@@ -43,6 +43,16 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
+= 0.9 =
+
+* Load thickbox using site_url() to allow for https (props @samargulies)
+* Change santization to use $allowedposttags for textarea and info
+* Display notice if theme doesn't support the Options Framework
+* Single checkboxes now use labels
+* CSS updates for formatting long labels
+* Allows dashes in the options id (props @mantone)
+* Uses add_theme_page over add_submenu_page (props @enile8)
+
 = 0.8 =
 
 * Saves tab states using local storage

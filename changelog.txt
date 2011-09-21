@@ -1,5 +1,14 @@
 == Changelog ==
 
+= 0.9 =
+
+* Load thickbox using site_url() to allow for https (props @samargulies)
+* Change santization to use $allowedposttags for textarea and info
+* Single checkboxes now use labels
+* CSS updates for formatting long labels
+* Allows dashes in the options id (props @mantone)
+* Uses add_theme_page over add_submenu_page (props @enile8)
+
 = 0.8 =
 
 * Saves tab states using local storage

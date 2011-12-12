@@ -19,7 +19,7 @@ get_header(); ?>
 					</header><!-- .entry-header -->
 
 					<div class="entry-content">
-						<p>Use of_of_get_option($id,$default) to return option values.</p>
+						<p>Use of of_get_option($id,$default) to return option values.</p>
 	    
 						<h2>Basic Options</h2>
 						

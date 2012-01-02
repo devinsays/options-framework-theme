@@ -84,6 +84,33 @@ function optionsframework_options() {
 						"std" => "Default Text",
 						"type" => "textarea"); 
 						
+	//slider 						
+	$options[] = array( "name" => "Slider",
+						"desc" => "min=0,max=100,step=1",
+						"id" => "example_slider",
+						"std" => "",
+						"type" => "slider",
+						"options" => array(
+									'min' => '0',
+									'max' => '100',
+									'step' => '1')
+									);	
+
+
+	//slider 						
+	$options[] = array( "name" => "Slider",
+						"desc" => "min=480,max=680,step=10",
+						"id" => "example_slider2",
+						"std" => "580",
+						"type" => "slider",
+						"options" => array(
+									'min' => '480',
+									'max' => '680',
+									'step' => '10')
+						);						
+						
+						
+						
 	$options[] = array( "name" => "Input Select Small",
 						"desc" => "Small Select Box.",
 						"id" => "example_select",

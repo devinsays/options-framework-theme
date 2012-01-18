@@ -53,6 +53,5 @@ jQuery(document).ready(function() {
 add_action('after_setup_theme','remove_twentyeleven_options', 100);
 
 function remove_twentyeleven_options() {
-	echo 'tset';
 	remove_action( 'admin_menu', 'twentyeleven_theme_options_add_page' );
 }

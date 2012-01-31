@@ -16,6 +16,9 @@
 	margin-bottom:0;
 	padding-bottom:10px;
 }
+#optionsframework h3 {
+	cursor: default;
+}
 #optionsframework .section {
 	padding:10px 10px 0;
 }

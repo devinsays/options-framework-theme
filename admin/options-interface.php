@@ -53,7 +53,7 @@ function optionsframework_fields() {
 
 			$output .= '<div id="' . esc_attr( $id ) .'" class="' . esc_attr( $class ) . '">'."\n";
 			
-			if ( $value['name'] ) {
+			if ( isset( $value['name'] ) ) {
 				$output .= '<h4 class="heading">' . esc_html( $value['name'] ) . '</h4>' . "\n";
 			}
 			

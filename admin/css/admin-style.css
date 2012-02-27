@@ -25,6 +25,9 @@
 #optionsframework .group {
 	padding-bottom:40px;
 }
+#optionsframework .group h3 {
+	cursor: default;
+}
 #optionsframework .section .heading {
 	padding:10px 0px;
 	margin:0 0 15px;

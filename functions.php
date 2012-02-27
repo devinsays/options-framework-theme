@@ -1,12 +1,12 @@
 <?php
 
+/* 
+ * Loads the Options Panel
+ */
+ 
 if ( !function_exists( 'optionsframework_init' ) ) {
 
-	/*-----------------------------------------------------------------------------------*/
-	/* Options Framework Theme
-	/*-----------------------------------------------------------------------------------*/
-
-	/* Set the file path based on whether the Options Framework Theme is a parent theme or child theme */
+	/* Set the file path based on whether we're in a child theme or parent theme */
 
 	if ( STYLESHEETPATH == TEMPLATEPATH ) {
 		define('OPTIONS_FRAMEWORK_URL', TEMPLATEPATH . '/admin/');
@@ -17,7 +17,6 @@ if ( !function_exists( 'optionsframework_init' ) ) {
 	}
 
 	require_once (OPTIONS_FRAMEWORK_URL . 'options-framework.php');
-
 }
 
 /* 
@@ -44,14 +43,4 @@ jQuery(document).ready(function() {
 </script>
 
 <?php
-}
-
-/* 
- * Turns off the default options panel from Twenty Eleven
- */
- 
-add_action('after_setup_theme','remove_twentyeleven_options', 100);
-
-function remove_twentyeleven_options() {
-	remove_action( 'admin_menu', 'twentyeleven_theme_options_add_page' );
 }

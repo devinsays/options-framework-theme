@@ -4,18 +4,14 @@ Tags: options, theme options
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X238BDP4QGTV2
 Requires at least: 3.0
 Tested up to: 3.2
-Stable tag: 0.9
+Stable tag: 1.0
 License: GPLv2
 
 == Description ==
 
 This is the adapted theme version of the Options Framework plugin.
 
-The Options Framework Plugin makes it easy to include an options panel in any WordPress theme.  It was built so that theme developers can concentrate on making the actual theme rather than spending a ton of time on creating an options panel from scratch.  It's free to use in both commercial and personal projects, just like WordPress itself.
-
-Please visit [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin) for a full description of how to define and use the theme options.
-
-The code is heavily based on the [WooFramework](http://www.woothemes.com/) and their option styles.
+The Options Framework makes it easy to include an options panel in any WordPress theme.  It was built so developers can concentrate on making the actual theme rather than spending time creating an options panel from scratch.
 
 == Frequently Asked Questions ==
 
@@ -23,7 +19,7 @@ The code is heavily based on the [WooFramework](http://www.woothemes.com/) and t
 
 Just drag the admin folder of this theme, options.php and functions.php into the theme of your choice.
 
-Options.php is a blueprint for how to work with options.  It includes an example of every option available in the panel and sample output in the theme.
+options.php is a blueprint for how to work with options.  It includes an example of every option available in the panel and sample output in the theme.
 
 You can also watch the video screencast I have at [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin).
 
@@ -42,6 +38,13 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * typography (a set of options to define typography)
 
 == Changelog ==
+
+= 1.0 =
+
+* Option header (h4) will not display in panel if name !isset (props @alepee)
+* Fix for user roles when saving options
+* Updated theme to no longer be a child of Twenty Eleven
+* Updated textarea settings to allow rows parameter
 
 = 0.9 =
 

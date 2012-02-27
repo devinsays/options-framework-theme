@@ -1,9 +1,6 @@
 <?php
 /*
-Plugin Name: Options Framework
-Plugin URI: http://www.wptheming.com
 Description: A framework for building theme options.
-Version: 0.8
 Author: Devin Price
 Author URI: http://www.wptheming.com
 License: GPLv2
@@ -27,12 +24,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 /* Basic plugin definitions */
 
-define('OPTIONS_FRAMEWORK_VERSION', '0.9');
+define('OPTIONS_FRAMEWORK_VERSION', '1.0');
 
 /* Make sure we don't expose any info if called directly */
 
 if ( !function_exists( 'add_action' ) ) {
-	echo "Hi there!  I'm just a little plugin, don't mind me.";
+	echo "Hi there!  I'm just a little extension, don't mind me.";
 	exit;
 }
 
@@ -101,6 +98,18 @@ function optionsframework_init() {
 	
 	// Registers the settings fields and callback
 	register_setting( 'optionsframework', $option_name, 'optionsframework_validate' );
+}
+
+/**
+ * Ensures that a user with the 'edit_theme_options' capability can actually set the options
+ * See: http://core.trac.wordpress.org/ticket/14365
+ *
+ * @param string $capability The capability used for the page, which is manage_options by default.
+ * @return string The capability to actually use.
+ */
+
+function optionsframework_page_capability( $capability ) {
+	return 'edit_theme_options';
 }
 
 /* 
@@ -205,24 +214,23 @@ function of_admin_head() {
  */
 
 if ( !function_exists( 'optionsframework_page' ) ) {
-function optionsframework_page() {
-	$return = optionsframework_fields();
-	settings_errors();
-	?>
-    
+	function optionsframework_page() {
+		settings_errors();
+?>
+
 	<div class="wrap">
     <?php screen_icon( 'themes' ); ?>
     <h2 class="nav-tab-wrapper">
-        <?php echo $return[1]; ?>
+        <?php echo optionsframework_tabs(); ?>
     </h2>
-    
+
     <div class="metabox-holder">
     <div id="optionsframework" class="postbox">
 		<form action="options.php" method="post">
 		<?php settings_fields('optionsframework'); ?>
 
-		<?php echo $return[0]; /* Settings */ ?>
-        
+		<?php optionsframework_fields(); /* Settings */ ?>
+
         <div id="optionsframework-submit">
 			<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options' ); ?>" />
             <input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!' ) ); ?>' );" />
@@ -234,7 +242,7 @@ function optionsframework_page() {
 </div> <!-- / .wrap -->
 
 <?php
-}
+	}
 }
 
 /** 

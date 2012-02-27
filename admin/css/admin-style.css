@@ -152,6 +152,14 @@
 #optionsframework .mini .explain {
 	max-width:74%;
 }
+
+/* Editor */
+
+#optionsframework .section-editor .explain {
+	float:none;
+	margin-bottom:5px;
+}
+
 /* Image Uploader */
 
 #optionsframework .controls input.upload {
@@ -219,4 +227,14 @@
 }
 #optionsframework .button-primary {
 	float:right;
+}
+
+/* Bottom Section */
+
+#optionsframework .section:before, #optionsframework .section:after {
+	content: "";
+	display: table;
+}
+#optionsframework .section:after {
+	clear: both;
 }

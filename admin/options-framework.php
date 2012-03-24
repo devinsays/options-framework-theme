@@ -354,22 +354,24 @@ function of_get_default_values() {
 	return $output;
 }
 
-/**
- * Add Theme Options menu item to Admin Bar.
- */
+if ( current_user_can('edit_theme_options') ) {
+	/**
+ 	* Add Theme Options menu item to Admin Bar.
+ 	*/
  
-add_action( 'wp_before_admin_bar_render', 'optionsframework_adminbar' );
+	add_action( 'wp_before_admin_bar_render', 'optionsframework_adminbar' );
 
-function optionsframework_adminbar() {
+	function optionsframework_adminbar() {
 	
-	global $wp_admin_bar;
+		global $wp_admin_bar;
 	
-	$wp_admin_bar->add_menu( array(
-		'parent' => 'appearance',
-		'id' => 'of_theme_options',
-		'title' => __( 'Theme Options' ),
-		'href' => admin_url( 'themes.php?page=options-framework' )
-  ));
+		$wp_admin_bar->add_menu( array(
+			'parent' => 'appearance',
+			'id' => 'of_theme_options',
+			'title' => __( 'Theme Options' ),
+			'href' => admin_url( 'themes.php?page=options-framework' )
+  	));
+	}
 }
 
 if ( ! function_exists( 'of_get_option' ) ) {

@@ -43,6 +43,7 @@ function optionsframework_rolescheck () {
 		add_action( 'admin_menu', 'optionsframework_add_page');
 		add_action( 'admin_init', 'optionsframework_init' );
 		add_action( 'admin_init', 'optionsframework_mlu_init' );
+		add_action( 'wp_before_admin_bar_render', 'optionsframework_adminbar' );
 	}
 }
 
@@ -354,24 +355,20 @@ function of_get_default_values() {
 	return $output;
 }
 
-if ( current_user_can('edit_theme_options') ) {
-	/**
- 	* Add Theme Options menu item to Admin Bar.
- 	*/
- 
-	add_action( 'wp_before_admin_bar_render', 'optionsframework_adminbar' );
+/**
+ * Add Theme Options menu item to Admin Bar.
+ */
 
-	function optionsframework_adminbar() {
-	
-		global $wp_admin_bar;
-	
-		$wp_admin_bar->add_menu( array(
+function optionsframework_adminbar() {
+
+	global $wp_admin_bar;
+
+	$wp_admin_bar->add_menu( array(
 			'parent' => 'appearance',
 			'id' => 'of_theme_options',
 			'title' => __( 'Theme Options' ),
 			'href' => admin_url( 'themes.php?page=options-framework' )
-  	));
-	}
+		));
 }
 
 if ( ! function_exists( 'of_get_option' ) ) {

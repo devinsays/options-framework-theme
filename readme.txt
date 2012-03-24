@@ -39,12 +39,17 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
+= Development =
+
+* Display admin menu link only if user has permissions (props @mindctrl)
+
 = 1.0 =
 
 * Option header (h4) will not display in panel if name !isset (props @alepee)
 * Fix for user roles when saving options
 * Updated theme to no longer be a child of Twenty Eleven
 * Updated textarea settings to allow rows parameter
+* Updated cursor:default for h3 metabox, props @yurifedorov
 
 = 0.9 =
 

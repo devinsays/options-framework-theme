@@ -64,14 +64,16 @@ jQuery(document).ready(function($) {
 	});
 	
 	if (activetab != '' && $(activetab + '-tab').length ) {
-		$(activetab + '-tab').addClass('nav-tab-active');
+		$(activetab + '-tab').addClass('nav-tab-active').trigger('of-tab-active');
 	}
 	else {
-		$(navTabSelector+':first').addClass('nav-tab-active');
+		$(navTabSelector+':first').addClass('nav-tab-active').trigger('of-tab-active');
 	}
 	$(navTabSelector).click(function(evt) {
 		$(navTabSelector).removeClass('nav-tab-active');
 		$(this).addClass('nav-tab-active').blur();
+		// Trigger a custom event so that the behavior can be extended:
+		$(this).trigger('of-tab-active');
 		var clicked_group = $(this).attr('href');
 		if (typeof(localStorage) != 'undefined' ) {
 			localStorage.setItem("activetab", $(this).attr('href'));

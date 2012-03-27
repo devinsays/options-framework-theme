@@ -76,7 +76,10 @@ jQuery(document).ready(function($) {
 		$(this).trigger('of-tab-active');
 		var clicked_group = $(this).attr('href');
 		if (typeof(localStorage) != 'undefined' ) {
-			localStorage.setItem("activetab", $(this).attr('href'));
+			// Validate that clicked item is a valid CSS ID selector:
+			if ($(this).attr('href').charAt(0) == '#') {
+				localStorage.setItem("activetab", $(this).attr('href'));
+			}
 		}
 		$('.group').hide();
 		$(clicked_group).fadeIn(Of_options.fadeDuration);

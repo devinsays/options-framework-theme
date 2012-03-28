@@ -67,10 +67,10 @@ jQuery(document).ready(function($) {
 		$(activetab + '-tab').addClass('nav-tab-active').trigger('of-tab-active');
 	}
 	else {
-		$(navTabSelector+':first').addClass('nav-tab-active').trigger('of-tab-active');
+		$(Of_options.navTabSelector+':first').addClass('nav-tab-active').trigger('of-tab-active');
 	}
-	$(navTabSelector).click(function(evt) {
-		$(navTabSelector).removeClass('nav-tab-active');
+	$(Of_options.navTabSelector).click(function(evt) {
+		$(Of_options.navTabSelector).removeClass('nav-tab-active');
 		$(this).addClass('nav-tab-active').blur();
 		// Trigger a custom event so that the behavior can be extended:
 		$(this).trigger('of-tab-active');

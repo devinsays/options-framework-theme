@@ -1,9 +1,10 @@
-=== Options Framework ===
+=== Options Framework Theme ===
+
 Contributors: Devin Price
 Tags: options, theme options
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X238BDP4QGTV2
+Donate link: http://bit.ly/options-donate
 Requires at least: 3.0
-Tested up to: 3.2
+Tested up to: 3.3
 Stable tag: 1.0
 License: GPLv2
 
@@ -39,8 +40,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
-= Development =
+= Other Updates =
 
+* Move js example from functions.php options.php
+* Simplify functions.php, no check for child theme now
 * Display admin menu link only if user has permissions (props @mindctrl)
 
 = 1.0 =

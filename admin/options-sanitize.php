@@ -72,20 +72,6 @@ function of_sanitize_upload( $input ) {
 }
 add_filter( 'of_sanitize_upload', 'of_sanitize_upload' );
 
-/* Editor */
-
-function of_sanitize_editor($input) {
-	if ( current_user_can( 'unfiltered_html' ) ) {
-		$output = $input;
-	}
-	else {
-		global $allowedtags;
-		$output = wpautop(wp_kses( $input, $allowedtags));
-	}
-	return $output;
-}
-add_filter( 'of_sanitize_editor', 'of_sanitize_editor' );
-
 /* Allowed Tags */
 
 function of_sanitize_allowedtags($input) {

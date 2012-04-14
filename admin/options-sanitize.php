@@ -186,7 +186,7 @@ function of_sanitize_font_size( $value ) {
 	}
 	return (int) apply_filters( 'of_default_font_size', $recognized );
 }
-add_filter( 'of_font_face', 'of_sanitize_font_size' );
+add_filter( 'of_font_size', 'of_sanitize_font_size' );
 
 
 function of_sanitize_font_style( $value ) {

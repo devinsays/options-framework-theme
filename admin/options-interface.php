@@ -211,7 +211,7 @@ function optionsframework_fields() {
 			$output .= '<select class="of-typography of-typography-size" name="' . esc_attr( $option_name . '[' . $value['id'] . '][size]' ) . '" id="' . esc_attr( $value['id'] . '_size' ) . '">';
 			for ($i = 9; $i < 71; $i++) {
 				$size = $i . 'px';
-				$output .= '<option value="' . esc_attr( $size ) . '" ' . selected( $typography_stored['size'], $size, false ) . '>' . esc_html( $size ) . '</option>';
+				$output .= '<option value="' . esc_attr( $size ) . '" ' . selected( $typography_stored['size'], $i, false ) . '>' . esc_html( $size ) . '</option>';
 			}
 			$output .= '</select>';
 

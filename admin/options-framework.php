@@ -159,16 +159,19 @@ function optionsframework_setdefaults() {
 	}
 }
 
-/* Add a subpage called "Theme Options" to the appearance menu. */
+/* Add a subpage called "Theme Options" to the appearance menu, unless it's been done before. */
 
 if ( !function_exists( 'optionsframework_add_page' ) ) {
 
 	function optionsframework_add_page() {
-		$of_page = add_theme_page('Theme Options', 'Theme Options', 'edit_theme_options', 'options-framework','optionsframework_page');
+		if (!defined('OPTIONS_FRAMEWORK_ADMIN_PAGE')) {
+			$of_page = add_theme_page('Theme Options', 'Theme Options', 'edit_theme_options', 'options-framework','optionsframework_page');
+			define('OPTIONS_FRAMEWORK_ADMIN_PAGE', $of_page);
+		}
 		
 		// Load the required CSS and javscript
 		add_action('admin_enqueue_scripts', 'optionsframework_load_scripts');
-		add_action( 'admin_print_styles-' . $of_page, 'optionsframework_load_styles' );
+		add_action( 'admin_print_styles-' . OPTIONS_FRAMEWORK_ADMIN_PAGE, 'optionsframework_load_styles' );
 	}
 	
 }
@@ -184,7 +187,7 @@ function optionsframework_load_styles() {
 
 function optionsframework_load_scripts($hook) {
 
-	if ( 'appearance_page_options-framework' != $hook )
+	if ( OPTIONS_FRAMEWORK_ADMIN_PAGE != $hook )
         return;
 	
 	// Enqueued scripts

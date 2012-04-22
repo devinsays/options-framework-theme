@@ -164,7 +164,13 @@ function optionsframework_setdefaults() {
 if ( !function_exists( 'optionsframework_add_page' ) ) {
 
 	function optionsframework_add_page() {
-		$of_page = add_theme_page('Theme Options', 'Theme Options', 'edit_theme_options', 'options-framework','optionsframework_page');
+		$of_page = add_theme_page(
+			__('Theme Options', 'optionsframework'), 
+			__('Theme Options', 'optionsframework'), 
+			'edit_theme_options', 
+			'options-framework', 
+			'optionsframework_page'
+		);
 		
 		// Load the required CSS and javscript
 		add_action('admin_enqueue_scripts', 'optionsframework_load_scripts');
@@ -233,8 +239,8 @@ if ( !function_exists( 'optionsframework_page' ) ) {
 		<?php optionsframework_fields(); /* Settings */ ?>
 
         <div id="optionsframework-submit">
-			<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options' ); ?>" />
-            <input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!' ) ); ?>' );" />
+			<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options', 'optionsframework' ); ?>" />
+            <input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults', 'optionsframework' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'optionsframework' ) ); ?>' );" />
             <div class="clear"></div>
 		</div>
 	</form>
@@ -363,7 +369,7 @@ function optionsframework_adminbar() {
 	$wp_admin_bar->add_menu( array(
 			'parent' => 'appearance',
 			'id' => 'of_theme_options',
-			'title' => __( 'Theme Options' ),
+			'title' => __( 'Theme Options', 'optionsframework' ),
 			'href' => admin_url( 'themes.php?page=options-framework' )
 		));
 }

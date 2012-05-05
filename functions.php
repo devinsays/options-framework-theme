@@ -11,3 +11,14 @@ if ( !function_exists( 'optionsframework_init' ) ) {
 	define( 'OPTIONS_FRAMEWORK_DIRECTORY', get_template_directory_uri() . '/admin/' );
 	require_once dirname( __FILE__ ) . '/admin/options-framework.php';
 }
+
+/* 
+ * A warning notice since the commits might be unstable until 1.1 is finished
+ */
+ 
+function options_framework_theme_notice(){
+    echo '<div class="updated">
+    	<p>Options Framework Theme is under development at the moment.  Get a stable <a href="https://github.com/devinsays/options-framework-theme/tags">version here</a>.</p>
+    </div>';
+}
+add_action('admin_notices', 'options_framework_theme_notice');

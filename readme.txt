@@ -3,7 +3,7 @@
 Contributors: Devin Price
 Tags: options, theme options
 Donate link: http://bit.ly/options-donate
-Requires at least: 3.0
+Requires at least: 3.3
 Tested up to: 3.3
 Stable tag: 1.0
 License: GPLv2

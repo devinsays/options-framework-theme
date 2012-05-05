@@ -8,14 +8,14 @@
  */
  
 if ( !function_exists( 'optionsframework_init' ) ) {
-	define( 'OPTIONS_FRAMEWORK_DIRECTORY', get_template_directory_uri() . '/admin/' );
-	require_once dirname( __FILE__ ) . '/admin/options-framework.php';
+	define( 'OPTIONS_FRAMEWORK_DIRECTORY', get_template_directory_uri() . '/inc/' );
+	require_once dirname( __FILE__ ) . '/inc/options-framework.php';
 }
 
 /* 
- * A warning notice since the commits might be unstable until 1.1 is finished
+ * A warning notice the commits might be unstable until 1.1 is finished
  */
- 
+
 function options_framework_theme_notice(){
 	global $pagenow;
 	if ( $pagenow == 'themes.php' ) {

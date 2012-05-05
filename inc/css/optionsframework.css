@@ -1,5 +1,5 @@
 /*-------------------------------------------------------------------------------------------*/
-/* OptionsFramework Admin Styles */
+/* Options Framework Admin Styles */
 /*-------------------------------------------------------------------------------------------*/
 
 .updated {
@@ -18,6 +18,7 @@
 #optionsframework p {
 	margin-bottom:0;
 	padding-bottom:10px;
+	line-height: 1.4em;
 }
 #optionsframework .section {
 	padding:10px 10px 0;
@@ -65,6 +66,7 @@
 }
 #optionsframework input.checkbox, #optionsframework input.of-radio {
 	width: 30px;
+	margin-top:2px;
 	float:left;
 	clear:both;
 }
@@ -159,6 +161,7 @@
 /* Editor */
 
 #optionsframework .section-editor .explain {
+	max-width: 98%;
 	float:none;
 	margin-bottom:5px;
 }

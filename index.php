@@ -5,7 +5,7 @@
  * This theme is purely for the purpose of testing theme options in Options Framework plugin.
  *
  * @package WordPress
- * @subpackage Options Check
+ * @subpackage Options Framework Theme
  */
 
 get_header(); ?>
@@ -187,6 +187,17 @@ get_header(); ?>
             } else {
                 echo "no entry";
             } ?>
+            </dd>
+            </dl>
+            
+			<hr>
+            
+            <h3>Editor</h3>
+            
+			<dl>
+            <dt>type: editor</dt>
+            <dd>of_get_option('example_editor'):<br>
+            <?php echo of_get_option('example_editor', 'no entry'); ?>
             </dd>
             </dl>
 

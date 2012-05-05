@@ -4,7 +4,7 @@ Description: A framework for building theme options.
 Author: Devin Price
 Author URI: http://www.wptheming.com
 License: GPLv2
-Version: 1.0
+Version: 1.1
 */
 
 /*
@@ -96,6 +96,9 @@ function optionsframework_init() {
 	
 	// Registers the settings fields and callback
 	register_setting( 'optionsframework', $option_name, 'optionsframework_validate' );
+	
+	// Change the capability required to save the 'optionsframework' options group.
+	add_filter( 'option_page_capability_optionsframework', 'optionsframework_page_capability' );
 }
 
 /**
@@ -164,13 +167,7 @@ function optionsframework_setdefaults() {
 if ( !function_exists( 'optionsframework_add_page' ) ) {
 
 	function optionsframework_add_page() {
-		$of_page = add_theme_page(
-			__('Theme Options', 'options_framework_theme'), 
-			__('Theme Options', 'options_framework_theme'), 
-			'edit_theme_options', 
-			'options-framework', 
-			'optionsframework_page'
-		);
+		$of_page = add_theme_page(__('Theme Options', 'options_framework_theme'), __('Theme Options', 'options_framework_theme'), 'edit_theme_options', 'options-framework','optionsframework_page');
 		
 		// Load the required CSS and javscript
 		add_action('admin_enqueue_scripts', 'optionsframework_load_scripts');
@@ -182,7 +179,7 @@ if ( !function_exists( 'optionsframework_add_page' ) ) {
 /* Loads the CSS */
 
 function optionsframework_load_styles() {
-	wp_enqueue_style('admin-style', OPTIONS_FRAMEWORK_DIRECTORY.'css/admin-style.css');
+	wp_enqueue_style('optionsframework', OPTIONS_FRAMEWORK_DIRECTORY.'css/optionsframework.css');
 	wp_enqueue_style('color-picker', OPTIONS_FRAMEWORK_DIRECTORY.'css/colorpicker.css');
 }	
 

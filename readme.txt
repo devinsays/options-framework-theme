@@ -37,14 +37,22 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * multicheck
 * color (a jquery color picker)
 * typography (a set of options to define typography)
+* editor
 
 == Changelog ==
 
-= Other Updates =
+= 1.1 =
 
-* Move js example from functions.php options.php
+* Move js example from functions.php to options.php
 * Simplify functions.php, no check for child theme now
 * Display admin menu link only if user has permissions (props @mindctrl)
+* Added support for wp_editor
+* Updated textarea settings to allow rows parameter
+* Updated cursor:default for h3 metabox, props @yurifedorov
+* Filtering of typography options (@mattwiebe)
+* Updated methods for typography options
+* Make uploader post type non-public (@samargulies)
+* Change name of admin folder to inc
 
 = 1.0 =
 

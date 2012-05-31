@@ -81,6 +81,13 @@ function optionsframework_options() {
 		$options_categories[$category->cat_ID] = $category->cat_name;
 	}
 
+	// Pull all tags into an array
+	$options_tags = array();
+	$options_tags_obj = get_tags();
+	foreach ($options_tags_obj as $tag) {
+		$options_tags[$tag->term_id] = $tag->name;
+	}
+	
 	// Pull all the pages into an array
 	$options_pages = array();
 	$options_pages_obj = get_pages('sort_column=post_parent,menu_order');

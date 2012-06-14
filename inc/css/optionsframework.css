@@ -21,15 +21,26 @@
 	line-height: 1.4em;
 }
 #optionsframework .section {
-	padding:10px 10px 0;
+	padding:0;
 }
 #optionsframework .group {
 	padding-bottom:40px;
 }
 #optionsframework .section .heading {
-	padding:10px 0px;
-	margin:0 0 15px;
-	border-bottom: 1px solid #dfdfdf;
+	width: 96%;
+	padding: 20px 2% 0;
+	margin: 0 0 15px;
+	border-top: 1px solid #dfdfdf;
+}
+#optionsframework .section:first-of-type .heading {
+	border-top: none;
+}
+#optionsframework .option {
+	position:relative;
+	display:block;
+	float:left;
+	width: 96%;
+	padding:0 2% 20px;
 }
 #optionsframework .section .controls {
 	float: left;
@@ -73,7 +84,7 @@
 #optionsframework .controls .of-color {
 	float:left;
 	width: 80px;
-	margin-left:5px;
+	margin-left:0;
 	margin-right:5px;
 }
 #optionsframework .controls .of-typography-size {

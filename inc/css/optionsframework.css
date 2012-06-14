@@ -244,3 +244,13 @@
 #optionsframework .section:after {
 	clear: both;
 }
+
+/* Color Selector */
+
+.colorSelector {
+    z-index: 100;
+	background: #EEE;
+	border: 1px solid #CCC;
+	position: absolute;
+	display: block;
+}

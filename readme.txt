@@ -4,8 +4,8 @@ Contributors: Devin Price
 Tags: options, theme options
 Donate link: http://bit.ly/options-donate
 Requires at least: 3.3
-Tested up to: 3.3
-Stable tag: 1.0
+Tested up to: 3.4
+Stable tag: 1.1
 License: GPLv2
 
 == Description ==
@@ -40,6 +40,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * editor
 
 == Changelog ==
+
+= Dev =
+
+* ID can now be passed on info option for styling purposes
 
 = 1.1 =
 

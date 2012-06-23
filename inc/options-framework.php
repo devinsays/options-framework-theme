@@ -4,7 +4,7 @@ Description: A framework for building theme options.
 Author: Devin Price
 Author URI: http://www.wptheming.com
 License: GPLv2
-Version: 1.1
+Version: 1.2
 */
 
 /*
@@ -248,14 +248,13 @@ if ( !function_exists( 'optionsframework_page' ) ) {
 	}
 }
 
-/** 
+/**
  * Validate Options.
  *
  * This runs after the submit/reset button has been clicked and
  * validates the inputs.
  *
- * @uses $_POST['reset']
- * @uses $_POST['update']
+ * @uses $_POST['reset'] to restore default options
  */
 function optionsframework_validate( $input ) {
 
@@ -266,19 +265,21 @@ function optionsframework_validate( $input ) {
 	 * button, the options defined in the theme's options.php
 	 * file will be added to the option for the active theme.
 	 */
-	 
-	if ( isset( $_POST['reset'] ) ) {
-		add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'options_framework_theme' ), 'updated fade' );
-		return of_get_default_values();
-	}
 
+	if ( isset( $_POST['reset'] ) ) {
+		add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'optionsframework' ), 'updated fade' );
+		return of_get_default_values();
+	} else {
+	
 	/*
-	 * Udpdate Settings.
+	 * Update Settings
+	 *
+	 * This used to check for $_POST['update'], but has been updated
+	 * to be compatible with the theme customizer introduced in WordPress 3.4
 	 */
-	 
-	if ( isset( $_POST['update'] ) ) {
+
 		$clean = array();
-		$options = optionsframework_options();
+		$options =& _optionsframework_options();
 		foreach ( $options as $option ) {
 
 			if ( ! isset( $option['id'] ) ) {
@@ -309,15 +310,10 @@ function optionsframework_validate( $input ) {
 			}
 		}
 
-		add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'options_framework_theme' ), 'updated fade' );
+		add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'optionsframework' ), 'updated fade' );
 		return $clean;
 	}
 
-	/*
-	 * Request Not Recognized.
-	 */
-	
-	return of_get_default_values();
 }
 
 /**

@@ -41,6 +41,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
+== Dev ==
+
+* Allow options to save when set by theme customizer
+
 = 1.2 =
 
 * ID can now be passed on info option for styling purposes

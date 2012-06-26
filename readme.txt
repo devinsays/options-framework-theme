@@ -5,7 +5,7 @@ Tags: options, theme options
 Donate link: http://bit.ly/options-donate
 Requires at least: 3.3
 Tested up to: 3.4
-Stable tag: 1.2
+Stable tag: 1.3
 License: GPLv2
 
 == Description ==
@@ -41,9 +41,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
-== Dev ==
+= 1.3 =
 
 * Allow options to save when set by theme customizer
+* Added optionsframework_after hook
 
 = 1.2 =
 

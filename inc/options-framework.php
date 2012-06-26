@@ -4,7 +4,7 @@ Description: A framework for building theme options.
 Author: Devin Price
 Author URI: http://www.wptheming.com
 License: GPLv2
-Version: 1.2
+Version: 1.3
 */
 
 /*
@@ -222,29 +222,28 @@ if ( !function_exists( 'optionsframework_page' ) ) {
 		settings_errors();
 ?>
 
-	<div class="wrap">
+	<div id="optionsframework-wrap" class="wrap">
     <?php screen_icon( 'themes' ); ?>
     <h2 class="nav-tab-wrapper">
         <?php echo optionsframework_tabs(); ?>
     </h2>
 
-    <div class="metabox-holder">
-    <div id="optionsframework" class="postbox">
-		<form action="options.php" method="post">
-		<?php settings_fields('optionsframework'); ?>
-
-		<?php optionsframework_fields(); /* Settings */ ?>
-
-        <div id="optionsframework-submit">
-			<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options', 'options_framework_theme' ); ?>" />
-            <input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults', 'options_framework_theme' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'options_framework_theme' ) ); ?>' );" />
-            <div class="clear"></div>
-		</div>
-	</form>
-</div> <!-- / #container -->
-</div>
-</div> <!-- / .wrap -->
-
+    <div id="optionsframework-metabox" class="metabox-holder">
+	    <div id="optionsframework" class="postbox">
+			<form action="options.php" method="post">
+			<?php settings_fields('optionsframework'); ?>
+			<?php optionsframework_fields(); /* Settings */ ?>
+			<div id="optionsframework-submit">
+				<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options', 'optionsframework' ); ?>" />
+				<input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults', 'optionsframework' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'optionsframework' ) ); ?>' );" />
+				<div class="clear"></div>
+			</div>
+			</form>
+		</div> <!-- / #container -->
+	</div>
+	<?php do_action('optionsframework_after'); ?>
+	</div> <!-- / .wrap -->
+	
 <?php
 	}
 }

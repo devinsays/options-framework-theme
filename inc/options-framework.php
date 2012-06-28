@@ -279,7 +279,7 @@ function optionsframework_validate( $input ) {
 	 */
 
 		$clean = array();
-		$options =& _optionsframework_options();
+		$options = optionsframework_options();
 		foreach ( $options as $option ) {
 
 			if ( ! isset( $option['id'] ) ) {
@@ -310,7 +310,7 @@ function optionsframework_validate( $input ) {
 			}
 		}
 
-		add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'optionsframework' ), 'updated fade' );
+		add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'options_framework_theme' ), 'updated fade' );
 		return $clean;
 	}
 

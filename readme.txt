@@ -45,6 +45,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 * Allow options to save when set by theme customizer
 * Added optionsframework_after hook
+* Normalized text domains to options_framework_theme
 
 = 1.2 =
 

@@ -32,7 +32,7 @@ function of_sanitize_checkbox( $input ) {
 	if ( $input ) {
 		$output = '1';
 	} else {
-		$output = '0';
+		$output = false;
 	}
 	return $output;
 }

@@ -294,13 +294,13 @@ function optionsframework_validate( $input ) {
 
 			// Set checkbox to false if it wasn't sent in the $_POST
 			if ( 'checkbox' == $option['type'] && ! isset( $input[$id] ) ) {
-				$input[$id] = '0';
+				$input[$id] = false;
 			}
 
 			// Set each item in the multicheck to false if it wasn't sent in the $_POST
 			if ( 'multicheck' == $option['type'] && ! isset( $input[$id] ) ) {
 				foreach ( $option['options'] as $key => $value ) {
-					$input[$id][$key] = '0';
+					$input[$id][$key] = false;
 				}
 			}
 

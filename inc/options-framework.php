@@ -180,7 +180,7 @@ if ( !function_exists( 'optionsframework_add_page' ) ) {
 
 function optionsframework_load_styles() {
 	wp_enqueue_style('optionsframework', OPTIONS_FRAMEWORK_DIRECTORY.'css/optionsframework.css');
-	wp_enqueue_style('color-picker', OPTIONS_FRAMEWORK_DIRECTORY.'css/colorpicker.css');
+	wp_enqueue_style( 'farbtastic' );
 }	
 
 /* Loads the javascript */
@@ -192,7 +192,7 @@ function optionsframework_load_scripts($hook) {
 	
 	// Enqueued scripts
 	wp_enqueue_script('jquery-ui-core');
-	wp_enqueue_script('color-picker', OPTIONS_FRAMEWORK_DIRECTORY.'js/colorpicker.js', array('jquery'));
+	wp_enqueue_script( 'farbtastic' );
 	wp_enqueue_script('options-custom', OPTIONS_FRAMEWORK_DIRECTORY.'js/options-custom.js', array('jquery'));
 	
 	// Inline scripts from options-interface.php

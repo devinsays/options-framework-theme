@@ -21,15 +21,33 @@
 	line-height: 1.4em;
 }
 #optionsframework .section {
-	padding:10px 10px 0;
+	width: 96%;
+	padding: 20px 2% 0;
+	border-top: 1px solid #dfdfdf;
+}
+#optionsframework .section:first-of-type {
+	border-top: none;
+}
+#optionsframework .section.hidden, #optionsframework .section.subsection {
+	border-top: none;
+	padding-top:0;
 }
 #optionsframework .group {
 	padding-bottom:40px;
 }
 #optionsframework .section .heading {
-	padding:10px 0px;
-	margin:0 0 15px;
-	border-bottom: 1px solid #dfdfdf;
+	margin: 0 0 5px;
+}
+#optionsframework .section:not(.hidden) .heading:first-of-type {
+	font-size: 1.2em;
+	margin: 0 0 15px;
+}
+#optionsframework .option {
+	position:relative;
+	display:block;
+	float:left;
+	width: 100%;
+	padding:0 0 10px;
 }
 #optionsframework .section .controls {
 	float: left;
@@ -73,7 +91,7 @@
 #optionsframework .controls .of-color {
 	float:left;
 	width: 80px;
-	margin-left:5px;
+	margin-left:0;
 	margin-right:5px;
 }
 #optionsframework .controls .of-typography-size {
@@ -243,4 +261,14 @@
 }
 #optionsframework .section:after {
 	clear: both;
+}
+
+/* Color Picker */
+
+.colorSelector {
+    z-index: 100;
+	background: #EEE;
+	border: 1px solid #CCC;
+	position: absolute;
+	display: block;
 }

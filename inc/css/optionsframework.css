@@ -21,33 +21,26 @@
 	line-height: 1.4em;
 }
 #optionsframework .section {
-	width: 96%;
-	padding: 20px 2% 0;
-	border-top: 1px solid #dfdfdf;
-}
-#optionsframework .section:first-of-type {
-	border-top: none;
-}
-#optionsframework .section.hidden, #optionsframework .section.subsection {
-	border-top: none;
-	padding-top:0;
+	padding:0;
 }
 #optionsframework .group {
 	padding-bottom:40px;
 }
 #optionsframework .section .heading {
-	margin: 0 0 5px;
-}
-#optionsframework .section:not(.hidden) .heading:first-of-type {
-	font-size: 1.2em;
+	width: 96%;
+	padding: 20px 2% 0;
 	margin: 0 0 15px;
+	border-top: 1px solid #dfdfdf;
+}
+#optionsframework .section:first-of-type .heading {
+	border-top: none;
 }
 #optionsframework .option {
 	position:relative;
 	display:block;
 	float:left;
-	width: 100%;
-	padding:0 0 10px;
+	width: 96%;
+	padding:0 2% 20px;
 }
 #optionsframework .section .controls {
 	float: left;
@@ -263,7 +256,7 @@
 	clear: both;
 }
 
-/* Color Picker */
+/* Color Selector */
 
 .colorSelector {
     z-index: 100;

@@ -180,6 +180,7 @@ if ( !function_exists( 'optionsframework_add_page' ) ) {
 
 function optionsframework_load_styles() {
 	wp_enqueue_style('optionsframework', OPTIONS_FRAMEWORK_DIRECTORY.'css/optionsframework.css');
+	wp_enqueue_style( 'farbtastic' );
 }	
 
 /* Loads the javascript */

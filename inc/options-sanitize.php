@@ -275,7 +275,7 @@ function of_recognized_background_attachment() {
 /**
  * Sanitize a color represented in hexidecimal notation.
  *
- * @param    string    Color in hexidecimal notation. "#" may or may not be prepended to the string.
+ * @param    string    Color in hexidecimal notation. "#" will always be prepended to the string.
  * @param    string    The value that this function should return if it cannot be recognized as a color.
  * @return   string
  *

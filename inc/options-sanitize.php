@@ -283,6 +283,9 @@ function of_recognized_background_attachment() {
 
 function of_sanitize_hex( $hex, $default = '' ) {
 	if ( of_validate_hex( $hex ) ) {
+		if ( 0 !== strpos( $hex, '#' ) ) {
+			$hex = '#' . $hex;
+		}
 		return $hex;
 	}
 	return $default;

@@ -275,7 +275,7 @@ function of_recognized_background_attachment() {
 /**
  * Sanitize a color represented in hexidecimal notation.
  *
- * @param    string    Color in hexidecimal notation. "#" may or may not be prepended to the string.
+ * @param    string    Color in hexidecimal notation. "#" will always be prepended to the string.
  * @param    string    The value that this function should return if it cannot be recognized as a color.
  * @return   string
  *
@@ -283,6 +283,9 @@ function of_recognized_background_attachment() {
 
 function of_sanitize_hex( $hex, $default = '' ) {
 	if ( of_validate_hex( $hex ) ) {
+		if ( 0 !== strpos( $hex, '#' ) ) {
+			$hex = '#' . $hex;
+		}
 		return $hex;
 	}
 	return $default;

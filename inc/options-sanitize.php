@@ -283,7 +283,7 @@ function of_recognized_background_attachment() {
 
 function of_sanitize_hex( $hex, $default = '' ) {
 	if ( of_validate_hex( $hex ) ) {
-		$hex = '#' . strtolower( ltrim( $hex, '#' ) );
+		$hex = '#' . strtolower( ltrim( trim( $hex ), '#' ) );
 		return $hex;
 	}
 	return $default;
@@ -359,7 +359,7 @@ function of_recognized_font_styles() {
  */
 
 function of_validate_hex( $hex ) {
-	if ( preg_match( '/^#?([a-f0-9]{3}){1,2}$/i', $hex ) ) {
+	if ( preg_match( '/^#?([a-f0-9]{3}){1,2}$/i', trim($hex) ) ) {
 		return true;
 	}
 	return false;

@@ -364,6 +364,30 @@ function optionsframework_fields() {
 			}
 			$output .= '</div>' . "\n";
 			break;
+	
+		// View - using custom html
+		case "view":
+			$id = '';
+			$class = 'section';
+			if ( isset( $value['id'] ) ) {
+				$id = 'id="' . esc_attr( $value['id'] ) . '" ';
+			}
+			if ( isset( $value['type'] ) ) {
+				$class .= ' section-' . $value['type'];
+			}
+			if ( isset( $value['class'] ) ) {
+				$class .= ' ' . $value['class'];
+			}
+
+			$output .= '<div ' . $id . 'class="' . esc_attr( $class ) . '">' . "\n";
+			if ( isset($value['name']) ) {
+				$output .= '<h4 class="heading">' . esc_html( $value['name'] ) . '</h4>' . "\n";
+			}
+			if ( $value['html'] ) {
+				$output .= $value['html'];
+			}
+			$output .= '</div>' . "\n";
+			break;
 
 		// Heading for Navigation
 		case "heading":

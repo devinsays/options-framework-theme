@@ -383,7 +383,7 @@ if ( ! function_exists( 'of_get_option' ) ) {
 			return $default;
 		}
 
-		$options = get_option( $config['id'] );
+		$options = get_option( $config['id'] ); 
 
 		if ( isset( $options[$name] ) ) {
 			return $options[$name];

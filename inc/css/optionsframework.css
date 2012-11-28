@@ -26,6 +26,9 @@
 #optionsframework .group {
 	padding-bottom:40px;
 }
+#optionsframework .group p {
+padding: 10px 10px 0;
+}
 #optionsframework .section .heading {
 	padding:10px 0px;
 	margin:0 0 15px;

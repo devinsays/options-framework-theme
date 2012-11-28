@@ -375,6 +375,9 @@ function optionsframework_fields() {
 			$menu .= '<a id="'.  esc_attr( $jquery_click_hook ) . '-tab" class="nav-tab" title="' . esc_attr( $value['name'] ) . '" href="' . esc_attr( '#'.  $jquery_click_hook ) . '">' . esc_html( $value['name'] ) . '</a>';
 			$output .= '<div class="group" id="' . esc_attr( $jquery_click_hook ) . '">';
 			$output .= '<h3>' . esc_html( $value['name'] ) . '</h3>' . "\n";
+			if ( isset($value['desc']) ) {
+				$output .= apply_filters('of_sanitize_info', $value['desc'] ) . "\n";
+			}
 			break;
 		}
 

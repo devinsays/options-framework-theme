@@ -4,8 +4,8 @@ Contributors: Devin Price
 Tags: options, theme options
 Donate link: http://bit.ly/options-donate
 Requires at least: 3.3
-Tested up to: 3.4.1
-Stable tag: 1.3
+Tested up to: 3.5
+Stable tag: 1.4
 License: GPLv2
 
 == Description ==
@@ -41,9 +41,14 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
-= Development =
+= 1.4 =
 
 * Add missing sanitization to typography color (@weplantmedia)
+* New colorpicker (props @mattweibe for getting this in WordPress core)
+* Farsi translations (@vahidd.com)
+* Added password option type (props @neojp)
+* Allow ids to passed to tabs (props @themeblvd)
+* Added optionsframework_after_validate hook (h/t @vanpop and @pryley)
 
 = 1.3 =
 

@@ -4,7 +4,7 @@ Description: A framework for building theme options.
 Author: Devin Price
 Author URI: http://www.wptheming.com
 License: GPLv2
-Version: 1.3
+Version: 1.4
 */
 
 /*
@@ -22,13 +22,6 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
-
-/* Make sure we don't expose any info if called directly */
-
-if ( !function_exists( 'add_action' ) ) {
-	echo "Hi there!  I'm just a little extension, don't mind me.";
-	exit;
-}
 
 /* If the user can't edit theme options, no use running this plugin */
 
@@ -179,9 +172,12 @@ if ( !function_exists( 'optionsframework_add_page' ) ) {
 /* Loads the CSS */
 
 function optionsframework_load_styles() {
-	wp_enqueue_style('optionsframework', OPTIONS_FRAMEWORK_DIRECTORY.'css/optionsframework.css');
-	wp_enqueue_style('color-picker', OPTIONS_FRAMEWORK_DIRECTORY.'css/colorpicker.css');
-}	
+	wp_enqueue_style('optionsframework', OPTIONS_FRAMEWORK_DIRECTORY . 'css/optionsframework.css');
+	if ( !wp_style_is( 'wp-color-picker','registered' ) ) {
+		wp_register_style('wp-color-picker', OPTIONS_FRAMEWORK_DIRECTORY . 'css/color-picker.min.css');
+	}
+	wp_enqueue_style( 'wp-color-picker' );
+}
 
 /* Loads the javascript */
 
@@ -189,18 +185,29 @@ function optionsframework_load_scripts($hook) {
 
 	if ( 'appearance_page_options-framework' != $hook )
         return;
+
+	// Enqueue colorpicker scripts for versions below 3.5
+	// for compatibility
 	
-	// Enqueued scripts
-	wp_enqueue_script('jquery-ui-core');
-	wp_enqueue_script('color-picker', OPTIONS_FRAMEWORK_DIRECTORY.'js/colorpicker.js', array('jquery'));
-	wp_enqueue_script('options-custom', OPTIONS_FRAMEWORK_DIRECTORY.'js/options-custom.js', array('jquery'));
+	if ( !wp_script_is( 'wp-color-picker', 'registered' ) ) {
+		wp_register_script( 'iris', OPTIONS_FRAMEWORK_DIRECTORY . 'js/iris.min.js', array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), false, 1 );
+		wp_register_script( 'wp-color-picker', OPTIONS_FRAMEWORK_DIRECTORY . 'js/color-picker.min.js', array( 'jquery', 'iris' ) );
+		$colorpicker_l10n = array(
+			'clear' => __( 'Clear' ),
+			'defaultString' => __( 'Default' ),
+			'pick' => __( 'Select Color' )
+		);
+		wp_localize_script( 'wp-color-picker', 'wpColorPickerL10n', $colorpicker_l10n );
+	}
 	
+	// Enqueue custom option panel JS
+	wp_enqueue_script( 'options-custom', OPTIONS_FRAMEWORK_DIRECTORY . 'js/options-custom.js', array( 'jquery','wp-color-picker' ) );
+
 	// Inline scripts from options-interface.php
-	add_action('admin_head', 'of_admin_head');
+	add_action( 'admin_head', 'of_admin_head' );
 }
 
 function of_admin_head() {
-
 	// Hook to add custom scripts
 	do_action( 'optionsframework_custom_scripts' );
 }
@@ -217,10 +224,9 @@ function of_admin_head() {
  *
  */
 
-if ( !function_exists( 'optionsframework_page' ) ) {
-	function optionsframework_page() {
-		settings_errors();
-?>
+if ( !function_exists( 'optionsframework_page' ) ) :
+function optionsframework_page() {
+	settings_errors(); ?>
 
 	<div id="optionsframework-wrap" class="wrap">
     <?php screen_icon( 'themes' ); ?>
@@ -234,8 +240,8 @@ if ( !function_exists( 'optionsframework_page' ) ) {
 			<?php settings_fields('optionsframework'); ?>
 			<?php optionsframework_fields(); /* Settings */ ?>
 			<div id="optionsframework-submit">
-				<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options', 'optionsframework' ); ?>" />
-				<input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults', 'optionsframework' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'options_framework_theme' ) ); ?>' );" />
+				<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options', 'options_framework_theme' ); ?>" />
+				<input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults', 'options_framework_theme' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'options_framework_theme' ) ); ?>' );" />
 				<div class="clear"></div>
 			</div>
 			</form>
@@ -245,8 +251,8 @@ if ( !function_exists( 'optionsframework_page' ) ) {
 	</div> <!-- / .wrap -->
 	
 <?php
-	}
 }
+endif;
 
 /**
  * Validate Options.
@@ -269,7 +275,7 @@ function optionsframework_validate( $input ) {
 	if ( isset( $_POST['reset'] ) ) {
 		add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'options_framework_theme' ), 'updated fade' );
 		return of_get_default_values();
-	} else {
+	}
 	
 	/*
 	 * Update Settings
@@ -277,44 +283,54 @@ function optionsframework_validate( $input ) {
 	 * This used to check for $_POST['update'], but has been updated
 	 * to be compatible with the theme customizer introduced in WordPress 3.4
 	 */
+	 
+	$clean = array();
+	$options = optionsframework_options();
+	foreach ( $options as $option ) {
 
-		$clean = array();
-		$options = optionsframework_options();
-		foreach ( $options as $option ) {
+		if ( ! isset( $option['id'] ) ) {
+			continue;
+		}
 
-			if ( ! isset( $option['id'] ) ) {
-				continue;
-			}
+		if ( ! isset( $option['type'] ) ) {
+			continue;
+		}
 
-			if ( ! isset( $option['type'] ) ) {
-				continue;
-			}
+		$id = preg_replace( '/[^a-zA-Z0-9._\-]/', '', strtolower( $option['id'] ) );
 
-			$id = preg_replace( '/[^a-zA-Z0-9._\-]/', '', strtolower( $option['id'] ) );
+		// Set checkbox to false if it wasn't sent in the $_POST
+		if ( 'checkbox' == $option['type'] && ! isset( $input[$id] ) ) {
+			$input[$id] = false;
+		}
 
-			// Set checkbox to false if it wasn't sent in the $_POST
-			if ( 'checkbox' == $option['type'] && ! isset( $input[$id] ) ) {
-				$input[$id] = false;
-			}
-
-			// Set each item in the multicheck to false if it wasn't sent in the $_POST
-			if ( 'multicheck' == $option['type'] && ! isset( $input[$id] ) ) {
-				foreach ( $option['options'] as $key => $value ) {
-					$input[$id][$key] = false;
-				}
-			}
-
-			// For a value to be submitted to database it must pass through a sanitization filter
-			if ( has_filter( 'of_sanitize_' . $option['type'] ) ) {
-				$clean[$id] = apply_filters( 'of_sanitize_' . $option['type'], $input[$id], $option );
+		// Set each item in the multicheck to false if it wasn't sent in the $_POST
+		if ( 'multicheck' == $option['type'] && ! isset( $input[$id] ) ) {
+			foreach ( $option['options'] as $key => $value ) {
+				$input[$id][$key] = false;
 			}
 		}
 
-		add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'options_framework_theme' ), 'updated fade' );
-		return $clean;
+		// For a value to be submitted to database it must pass through a sanitization filter
+		if ( has_filter( 'of_sanitize_' . $option['type'] ) ) {
+			$clean[$id] = apply_filters( 'of_sanitize_' . $option['type'], $input[$id], $option );
+		}
 	}
-
+	
+	// Hook to run after validation
+	do_action( 'optionsframework_after_validate', $clean );
+	
+	return $clean;
 }
+
+/**
+ * Display message when options have been saved
+ */
+ 
+function optionsframework_save_options_notice() {
+	add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'options_framework_theme' ), 'updated fade' );
+}
+
+add_action( 'optionsframework_after_validate', 'optionsframework_save_options_notice' );
 
 /**
  * Format Configuration Array.

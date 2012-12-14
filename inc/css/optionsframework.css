@@ -173,10 +173,10 @@
 }
 #optionsframework .controls input.upload_button {
 	float:right;
-	width:45px;
+	width: auto;
 	border-color:#BBBBBB;
 	cursor:pointer;
-	height:16px;
+	min-height: 16px;
 }
 #optionsframework .controls input.upload_button:hover {
 	border-color:#666666;

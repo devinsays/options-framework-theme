@@ -23,7 +23,7 @@ if ( ! function_exists( 'optionsframework_mlu_init' ) ) :
 function optionsframework_mlu_init () {
 	register_post_type( 'optionsframework', array(
 		'labels' => array(
-			'name' => __( 'Theme Options Media', 'optionsframework' ),
+			'name' => __( 'Theme Options Media', 'options_framework_theme' ),
 		),
 		'public' => true,
 		'show_ui' => false,
@@ -123,7 +123,7 @@ function optionsframework_medialibrary_uploader( $_id, $_value, $_mode = 'full',
 	
 	if ( $value ) { $class = ' has-file'; }
 	$output .= '<input id="' . $id . '" class="upload' . $class . '" type="text" name="'.$name.'" value="' . $value . '" />' . "\n";
-	$output .= '<input id="upload_' . $id . '" class="upload_button button" type="button" value="' . __( 'Upload', 'optionsframework' ) . '" rel="' . $int . '" />' . "\n";
+	$output .= '<input id="upload_' . $id . '" class="upload_button button" type="button" value="' . __( 'Upload', 'options_framework_theme' ) . '" rel="' . $int . '" />' . "\n";
 	
 	if ( $_desc != '' ) {
 		$output .= '<span class="of_metabox_desc">' . $_desc . '</span>' . "\n";
@@ -279,7 +279,7 @@ endif;
 if ( ! function_exists( 'optionsframework_mlu_modify_tabs' ) ) :
 
 function optionsframework_mlu_modify_tabs ( $tabs ) {
-	$tabs['gallery'] = str_replace( __( 'Gallery', 'optionsframework' ), __( 'Previously Uploaded', 'options_framework_theme' ), $tabs['gallery'] );
+	$tabs['gallery'] = str_replace( __( 'Gallery', 'options_framework_theme' ), __( 'Previously Uploaded', 'options_framework_theme' ), $tabs['gallery'] );
 	return $tabs;
 }
 

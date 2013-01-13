@@ -41,6 +41,12 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
+= Development =
+
+* Updated width of text input
+* New media uploader
+* Dropped custom post types for file attachments
+
 = 1.4 =
 
 * Add missing sanitization to typography color (@weplantmedia)

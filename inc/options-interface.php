@@ -6,7 +6,6 @@
 
 function optionsframework_tabs() {
 	$counter = 0;
-	$optionsframework_settings = get_option('options_framework_theme');
 	$options = optionsframework_options();
 	$menu = '';
 
@@ -31,14 +30,14 @@ function optionsframework_tabs() {
 function optionsframework_fields() {
 
 	global $allowedtags;
-	$optionsframework_settings = get_option('optionsframework');
+	$optionsframework_settings = get_option('options_framework_theme');
 
 	// Gets the unique option id
 	if ( isset( $optionsframework_settings['id'] ) ) {
 		$option_name = $optionsframework_settings['id'];
 	}
 	else {
-		$option_name = 'optionsframework';
+		$option_name = 'options_framework_theme';
 	};
 
 	$settings = get_option($option_name);
@@ -63,7 +62,7 @@ function optionsframework_fields() {
 
 			$id = 'section-' . $value['id'];
 
-			$class = 'section ';
+			$class = 'section';
 			if ( isset( $value['type'] ) ) {
 				$class .= ' section-' . $value['type'];
 			}
@@ -211,7 +210,8 @@ function optionsframework_fields() {
 
 		// Uploader
 		case "upload":
-			$output .= optionsframework_medialibrary_uploader( $value['id'], $val, null );
+			$output .= optionsframework_uploader( $value['id'], $val, null );
+			
 			break;
 
 		// Typography
@@ -300,12 +300,13 @@ function optionsframework_fields() {
 			}
 			$output .= '<input name="' . esc_attr( $option_name . '[' . $value['id'] . '][color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" class="of-color of-background-color"  type="text" value="' . esc_attr( $background['color'] ) . '"' . $default_color .' />';
 
-			// Background Image - New AJAX Uploader using Media Library
+			// Background Image
 			if (!isset($background['image'])) {
 				$background['image'] = '';
 			}
-
-			$output .= optionsframework_medialibrary_uploader( $value['id'], $background['image'], null, '',0,'image');
+			
+			$output .= optionsframework_uploader( $value['id'], $background['image'], null, esc_attr( $option_name . '[' . $value['id'] . '][image]' ) );
+			
 			$class = 'of-background-properties';
 			if ( '' == $background['image'] ) {
 				$class .= ' hide';

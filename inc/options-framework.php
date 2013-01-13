@@ -32,7 +32,6 @@ function optionsframework_rolescheck () {
 		// If the user can edit theme options, let the fun begin!
 		add_action( 'admin_menu', 'optionsframework_add_page');
 		add_action( 'admin_init', 'optionsframework_init' );
-		add_action( 'admin_init', 'optionsframework_mlu_init' );
 		add_action( 'wp_before_admin_bar_render', 'optionsframework_adminbar' );
 	}
 }
@@ -59,7 +58,7 @@ function optionsframework_init() {
 
 	// Include the required files
 	require_once dirname( __FILE__ ) . '/options-interface.php';
-	require_once dirname( __FILE__ ) . '/options-medialibrary-uploader.php';
+	require_once dirname( __FILE__ ) . '/options-media-uploader.php';
 	
 	// Loads the options array from the theme
 	if ( $optionsfile = locate_template( array('options.php') ) ) {
@@ -160,10 +159,11 @@ function optionsframework_setdefaults() {
 if ( !function_exists( 'optionsframework_add_page' ) ) {
 
 	function optionsframework_add_page() {
-		$of_page = add_theme_page(__('Theme Options', 'options_framework_theme'), __('Theme Options', 'options_framework_theme'), 'edit_theme_options', 'options-framework','optionsframework_page');
-		
+		$of_page = add_theme_page(__('Theme Options', 'optionsframework'), __('Theme Options', 'optionsframework'), 'edit_theme_options', 'options-framework','optionsframework_page');
+
 		// Load the required CSS and javscript
-		add_action('admin_enqueue_scripts', 'optionsframework_load_scripts');
+		add_action( 'admin_enqueue_scripts', 'optionsframework_load_scripts');
+		add_action( 'admin_enqueue_scripts', 'optionsframework_media_scripts');
 		add_action( 'admin_print_styles-' . $of_page, 'optionsframework_load_styles' );
 	}
 	
@@ -172,9 +172,9 @@ if ( !function_exists( 'optionsframework_add_page' ) ) {
 /* Loads the CSS */
 
 function optionsframework_load_styles() {
-	wp_enqueue_style('optionsframework', OPTIONS_FRAMEWORK_DIRECTORY . 'css/optionsframework.css');
+	wp_enqueue_style('optionsframework', OPTIONS_FRAMEWORK_DIRECTORY.'css/optionsframework.css');
 	if ( !wp_style_is( 'wp-color-picker','registered' ) ) {
-		wp_register_style('wp-color-picker', OPTIONS_FRAMEWORK_DIRECTORY . 'css/color-picker.min.css');
+		wp_register_style('wp-color-picker', OPTIONS_FRAMEWORK_DIRECTORY.'css/color-picker.min.css');
 	}
 	wp_enqueue_style( 'wp-color-picker' );
 }
@@ -186,9 +186,7 @@ function optionsframework_load_scripts($hook) {
 	if ( 'appearance_page_options-framework' != $hook )
         return;
 
-	// Enqueue colorpicker scripts for versions below 3.5
-	// for compatibility
-	
+	// Enqueue colorpicker scripts for versions below 3.5 for compatibility
 	if ( !wp_script_is( 'wp-color-picker', 'registered' ) ) {
 		wp_register_script( 'iris', OPTIONS_FRAMEWORK_DIRECTORY . 'js/iris.min.js', array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), false, 1 );
 		wp_register_script( 'wp-color-picker', OPTIONS_FRAMEWORK_DIRECTORY . 'js/color-picker.min.js', array( 'jquery', 'iris' ) );

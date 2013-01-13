@@ -48,6 +48,9 @@
 #optionsframework .section-checkbox .explain {
 	max-width:94%;
 }
+#optionsframework .of-input {
+	width:100%;
+}
 #optionsframework .controls select, #optionsframework .controls textarea {
 	margin-bottom:10px;
 	width:100%;
@@ -192,7 +195,7 @@
 	padding:4px;
 	margin-bottom:10px;
 }
-#optionsframework .screenshot .mlu_remove {
+#optionsframework .screenshot .remove-image {
 	background:url("../images/ico-delete.png") no-repeat;
 	border:medium none;
 	bottom:4px;
@@ -208,7 +211,7 @@
 #optionsframework .screenshot .no_image .file_link {
 	margin-left: 20px;
 }
-#optionsframework .screenshot .no_image .mlu_remove {
+#optionsframework .screenshot .no_image .remove-button {
 	bottom: 0px;
 }
 #optionsframework .reset-button {

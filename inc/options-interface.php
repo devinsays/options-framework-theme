@@ -30,7 +30,7 @@ function optionsframework_tabs() {
 function optionsframework_fields() {
 
 	global $allowedtags;
-	$optionsframework_settings = get_option('options_framework_theme');
+	$optionsframework_settings = get_option('optionsframework');
 
 	// Gets the unique option id
 	if ( isset( $optionsframework_settings['id'] ) ) {

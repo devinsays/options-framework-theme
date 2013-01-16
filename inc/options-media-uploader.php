@@ -14,7 +14,7 @@ if ( ! function_exists( 'optionsframework_uploader' ) ) :
 
 function optionsframework_uploader( $_id, $_value, $_desc = '', $_name = '') {
 
-	$optionsframework_settings = get_option('options_framework_theme');
+	$optionsframework_settings = get_option('optionsframework');
 	
 	// Gets the unique option id
 	if ( isset( $optionsframework_settings['id'] ) ) {

@@ -78,7 +78,7 @@ function optionsframework_init() {
 		$option_name = $optionsframework_settings['id'];
 	}
 	else {
-		$option_name = 'optionsframework';
+		$option_name = 'options_framework_theme';
 	}
 	
 	// If the option has no saved data, load the defaults

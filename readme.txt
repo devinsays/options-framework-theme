@@ -46,6 +46,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Updated width of text input
 * New media uploader
 * Dropped custom post types for file attachments
+* Updated IDs for .tabs and .groups
 
 = 1.4 =
 

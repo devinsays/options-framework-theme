@@ -77,5 +77,5 @@ function optionsframework_update_to_version_1_5() {
 function optionsframework_update_version() {
 	$optionsframework_settings = get_option( 'optionsframework' );
 	$optionsframework_settings['version'] = '1.5';
-	update_option( 'optionsframework', $optionsframework_settings);
+	update_option( 'optionsframework', $optionsframework_settings );
 }

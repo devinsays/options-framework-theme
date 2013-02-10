@@ -9,9 +9,9 @@ function optionsframework_tabs() {
 	$options = optionsframework_options();
 	$menu = '';
 
-	foreach ($options as $value) {
+	foreach ( $options as $value ) {
 		// Heading for Navigation
-		if ($value['type'] == "heading") {
+		if ( $value['type'] == "heading" ) {
 			$counter++;
 			$class = '';
 			$class = ! empty( $value['id'] ) ? $value['id'] : $value['name'];
@@ -30,7 +30,7 @@ function optionsframework_tabs() {
 function optionsframework_fields() {
 
 	global $allowedtags;
-	$optionsframework_settings = get_option('optionsframework');
+	$optionsframework_settings = get_option( 'optionsframework' );
 
 	// Gets the unique option id
 	if ( isset( $optionsframework_settings['id'] ) ) {
@@ -57,7 +57,7 @@ function optionsframework_fields() {
 		if ( ( $value['type'] != "heading" ) && ( $value['type'] != "info" ) ) {
 
 			// Keep all ids lowercase with no spaces
-			$value['id'] = preg_replace('/[^a-zA-Z0-9._\-]/', '', strtolower($value['id']) );
+			$value['id'] = preg_replace('/[^a-zA-Z0-9._\-]/', '', strtolower( $value['id'] ) );
 
 			$id = 'section-' . $value['id'];
 
@@ -272,7 +272,7 @@ function optionsframework_fields() {
 			// Font Color
 			if ( $typography_options['color'] ) {
 				$default_color = '';
-				if ( isset($value['std']['color']) ) {
+				if ( isset( $value['std']['color'] ) ) {
 					if ( $val !=  $value['std']['color'] )
 						$default_color = ' data-default-color="' .$value['std']['color'] . '" ';
 				}
@@ -293,7 +293,7 @@ function optionsframework_fields() {
 
 			// Background Color
 			$default_color = '';
-			if ( isset($value['std']['color']) ) {
+			if ( isset( $value['std']['color'] ) ) {
 				if ( $val !=  $value['std']['color'] )
 					$default_color = ' data-default-color="' .$value['std']['color'] . '" ';
 			}

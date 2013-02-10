@@ -2,10 +2,10 @@
 
 Contributors: Devin Price
 Tags: options, theme options
-Donate link: http://bit.ly/options-donate
+Donate link: http://bit.ly/options-donate-2
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 1.4
+Stable tag: 1.5
 License: GPLv2
 
 == Description ==
@@ -18,11 +18,11 @@ The Options Framework makes it easy to include an options panel in any WordPress
 
 = How do I build options for my own theme? =
 
-Just drag the admin folder of this theme, options.php and functions.php into the theme of your choice.
+Just drag the "inc" folder of this theme, options.php and functions.php into the theme of your choice.
 
 options.php is a blueprint for how to work with options.  It includes an example of every option available in the panel and sample output in the theme.
 
-You can also watch the video screencast I have at [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin).
+You can also watch the video screencast I have at [http://wptheming.com/options-framework-theme](http://wptheming.com/options-framework-theme).
 
 = What options are available to use? =
 
@@ -46,7 +46,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Updated width of text input
 * New media uploader
 * Dropped custom post types for file attachments
-* Updater script to remove the unused post types
+* Updater script to remove the unused 'optionsframework' post types
 * Updated IDs for .tabs and .groups
 
 = 1.4 =

@@ -41,11 +41,12 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
-= Development =
+= 1.5 =
 
 * Updated width of text input
 * New media uploader
 * Dropped custom post types for file attachments
+* Updater script to remove the unused post types
 * Updated IDs for .tabs and .groups
 
 = 1.4 =

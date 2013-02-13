@@ -28,7 +28,7 @@ function optionsframework_upgrade_routine() {
 function optionsframework_update_to_version_1_5() {
 	register_post_type( 'optionsframework', array(
 		'labels' => array(
-			'name' => __( 'Theme Options Media', 'optionsframework' ),
+			'name' => __( 'Theme Options Media', 'options_framework_theme' ),
 		),
 		'show_ui' => false,
 		'rewrite' => false,

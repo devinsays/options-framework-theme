@@ -48,7 +48,7 @@ function optionsframework_uploader( $_id, $_value, $_desc = '', $_name = '' ) {
 	if ( $value ) {
 		$class = ' has-file';
 	}
-	$output .= '<input id="' . $id . '" class="upload' . $class . '" type="text" name="'.$name.'" value="' . $value . '" placeholder="' . __('No file chosen', 'optionsframework') .'" />' . "\n";
+	$output .= '<input id="' . $id . '" class="upload' . $class . '" type="text" name="'.$name.'" value="' . $value . '" placeholder="' . __('No file chosen', 'options_framework_theme') .'" />' . "\n";
 	if ( $value == '' ) {
 		$output .= '<input id="upload-' . $id . '" class="upload-button button" type="button" value="' . __( 'Upload', 'options_framework_theme' ) . '" />' . "\n";
 	} else {
@@ -76,7 +76,7 @@ function optionsframework_uploader( $_id, $_value, $_desc = '', $_name = '' ) {
 			$output .= '';
 		
 			// Standard generic output if it's not an image.	
-			$title = __( 'View File', 'optionsframework' );
+			$title = __( 'View File', 'options_framework_theme' );
 			$output .= '<div class="no-image"><span class="file_link"><a href="' . $value . '" target="_blank" rel="external">'.$title.'</a></span></div>';
 		}	
 	}

@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 /* If the user can't edit theme options, no use running this plugin */
 
-add_action('init', 'optionsframework_rolescheck' );
+add_action( 'init', 'optionsframework_rolescheck' );
 
 function optionsframework_rolescheck () {
 	if ( current_user_can( 'edit_theme_options' ) ) {
@@ -64,7 +64,7 @@ function optionsframework_init() {
 	if ( $optionsfile = locate_template( array('options.php') ) ) {
 		require_once($optionsfile);
 	}
-	else if (file_exists( dirname( __FILE__ ) . '/options.php' ) ) {
+	else if ( file_exists( dirname( __FILE__ ) . '/options.php' ) ) {
 		require_once dirname( __FILE__ ) . '/options.php';
 	}
 	
@@ -74,7 +74,7 @@ function optionsframework_init() {
 	// Update routine
 	// This code can be removed if you're starting a new project
 	// and don't have legacy users to support
-	if ( $optionsframework_settings && !isset($optionsframework_settings['version']) ) {
+	if ( $optionsframework_settings && !isset( $optionsframework_settings['version'] ) ) {
 		require_once dirname( __FILE__ ) . '/upgrade.php';
 		optionsframework_upgrade_routine();
 	}

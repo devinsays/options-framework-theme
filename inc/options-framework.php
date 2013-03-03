@@ -4,7 +4,7 @@ Description: A framework for building theme options.
 Author: Devin Price
 Author URI: http://www.wptheming.com
 License: GPLv2
-Version: 1.5
+Version: 1.5.2
 */
 
 /*
@@ -70,14 +70,6 @@ function optionsframework_init() {
 	
 	// Load settings
 	$optionsframework_settings = get_option('optionsframework' );
-	
-	// Update routine
-	// This code can be removed if you're starting a new project
-	// and don't have legacy users to support
-	if ( $optionsframework_settings && !isset( $optionsframework_settings['version'] ) ) {
-		require_once dirname( __FILE__ ) . '/upgrade.php';
-		optionsframework_upgrade_routine();
-	}
 	
 	// Updates the unique option id in the database if it has changed
 	optionsframework_option_name();

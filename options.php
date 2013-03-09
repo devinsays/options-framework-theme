@@ -63,14 +63,16 @@ function optionsframework_options() {
 	$typography_defaults = array(
 		'size' => '15px',
 		'face' => 'georgia',
-		'style' => 'bold',
+		'style' => 'normal',
+		'weight' => '400',
 		'color' => '#bada55' );
 		
 	// Typography Options
 	$typography_options = array(
 		'sizes' => array( '6','12','14','16','20' ),
 		'faces' => array( 'Helvetica Neue' => 'Helvetica Neue','Arial' => 'Arial' ),
-		'styles' => array( 'normal' => 'Normal','bold' => 'Bold' ),
+		'styles' => array( 'normal' => 'Normal', 'italic' => 'Italic' ),
+		'weights' => false,
 		'color' => false
 	);
 

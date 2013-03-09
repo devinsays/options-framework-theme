@@ -172,6 +172,7 @@ function of_sanitize_typography( $input, $option ) {
 		'size'  => '',
 		'face'  => '',
 		'style' => '',
+		'weight' => '',
 		'color' => ''
 	) );
 
@@ -186,6 +187,7 @@ function of_sanitize_typography( $input, $option ) {
 
 	$output['size']  = apply_filters( 'of_font_size', $output['size'] );
 	$output['style'] = apply_filters( 'of_font_style', $output['style'] );
+	$output['weight'] = apply_filters( 'of_font_weight', $output['weight'] );
 	$output['color'] = apply_filters( 'of_sanitize_color', $output['color'] );
 	return $output;
 }
@@ -210,6 +212,15 @@ function of_sanitize_font_style( $value ) {
 	return apply_filters( 'of_default_font_style', current( $recognized ) );
 }
 add_filter( 'of_font_style', 'of_sanitize_font_style' );
+
+function of_sanitize_font_weight( $value ) {
+	$recognized = of_recognized_font_weights();
+	if ( array_key_exists( $value, $recognized ) ) {
+		return $value;
+	}
+	return apply_filters( 'of_default_font_weight', current( $recognized ) );
+}
+add_filter( 'of_font_weight', 'of_sanitize_font_weight' );
 
 
 function of_sanitize_font_face( $value ) {
@@ -341,12 +352,41 @@ function of_recognized_font_faces() {
  */
 function of_recognized_font_styles() {
 	$default = array(
-		'normal'      => __( 'Normal', 'options_framework_theme' ),
-		'italic'      => __( 'Italic', 'options_framework_theme' ),
-		'bold'        => __( 'Bold', 'options_framework_theme' ),
-		'bold italic' => __( 'Bold Italic', 'options_framework_theme' )
+		'normal'  => __( 'Normal', 'options_framework_theme' ),
+		'italic'  => __( 'Italic', 'options_framework_theme' ),
+		'oblique' => __( 'Oblique', 'options_framework_theme' ),
+		'inherit' => __( 'Inherit', 'options_framework_theme' )
 	);
 	return apply_filters( 'of_recognized_font_styles', $default );
+}
+
+/**
+ * Get recognized font weights.
+ *
+ * Returns an array of all recognized font weights.
+ * Keys are intended to be stored in the database
+ * while values are ready for display in in html.
+ *
+ * @return   array
+ *
+ */
+function of_recognized_font_weights() {
+	$default = array(
+		'normal'  => __( 'Normal', 'options_framework_theme' ),
+		'bold'    => __( 'Bold', 'options_framework_theme' ),
+		'bolder'  => __( 'Bolder', 'options_framework_theme' ),
+		'100'     => __( '100', 'options_framework_theme' ),
+		'200'     => __( '200', 'options_framework_theme' ),
+		'300'     => __( '300', 'options_framework_theme' ),
+		'400'     => __( '400', 'options_framework_theme' ),
+		'500'     => __( '500', 'options_framework_theme' ),
+		'600'     => __( '600', 'options_framework_theme' ),
+		'700'     => __( '700', 'options_framework_theme' ),
+		'800'     => __( '800', 'options_framework_theme' ),
+		'900'     => __( '900', 'options_framework_theme' ),
+		'inherit' => __( 'Inherit', 'options_framework_theme' )				
+	);
+	return apply_filters( 'of_recognized_font_weights', $default );
 }
 
 /**

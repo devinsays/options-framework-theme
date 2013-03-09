@@ -216,12 +216,13 @@ function optionsframework_fields() {
 		// Typography
 		case 'typography':
 		
-			unset( $font_size, $font_style, $font_face, $font_color );
+			unset( $font_size, $font_style, $font_weight, $font_face, $font_color );
 		
 			$typography_defaults = array(
 				'size' => '',
 				'face' => '',
 				'style' => '',
+				'weight' => '',
 				'color' => ''
 			);
 			
@@ -231,6 +232,7 @@ function optionsframework_fields() {
 				'sizes' => of_recognized_font_sizes(),
 				'faces' => of_recognized_font_faces(),
 				'styles' => of_recognized_font_styles(),
+				'weights' => of_recognized_font_weights(),
 				'color' => true
 			);
 			
@@ -269,6 +271,17 @@ function optionsframework_fields() {
 				$font_style .= '</select>';
 			}
 
+			// Font Weights
+			if ( $typography_options['weights'] ) {
+				$font_weight = '<select class="of-typography of-typography-weight" name="'.$option_name.'['.$value['id'].'][weight]" id="'. $value['id'].'_weight">';
+				$weights = $typography_options['weights'];
+				foreach ( $weights as $key => $weight ) {
+					$font_weight .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['weight'], $key, false ) . '>'. $weight .'</option>';
+				}
+				$font_weight .= '</select>';
+			}
+
+
 			// Font Color
 			if ( $typography_options['color'] ) {
 				$default_color = '';
@@ -280,7 +293,7 @@ function optionsframework_fields() {
 			}
 	
 			// Allow modification/injection of typography fields
-			$typography_fields = compact( 'font_size', 'font_face', 'font_style', 'font_color' );
+			$typography_fields = compact( 'font_size', 'font_face', 'font_style', 'font_weight', 'font_color' );
 			$typography_fields = apply_filters( 'of_typography_fields', $typography_fields, $typography_stored, $option_name, $value );
 			$output .= implode( '', $typography_fields );
 			

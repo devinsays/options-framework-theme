@@ -62,10 +62,7 @@ function optionsframework_init() {
 	
 	// Loads the options array from the theme
 	if ( $optionsfile = locate_template( array('options.php') ) ) {
-		require_once($optionsfile);
-	}
-	else if ( file_exists( dirname( __FILE__ ) . '/options.php' ) ) {
-		require_once dirname( __FILE__ ) . '/options.php';
+		get_template_part('options');
 	}
 	
 	// Load settings

@@ -60,36 +60,46 @@ function optionsframework_init() {
 	require_once dirname( __FILE__ ) . '/options-interface.php';
 	require_once dirname( __FILE__ ) . '/options-media-uploader.php';
 	
-	// Loads the options array from the theme
-	if ( $optionsfile = locate_template( array('options.php') ) ) {
-		require_once($optionsfile);
-	}
-	else if ( file_exists( dirname( __FILE__ ) . '/options.php' ) ) {
-		require_once dirname( __FILE__ ) . '/options.php';
-	}
+	// Optionally Loads the options file from the theme
+	$location = apply_filters( 'options_framework_location', array( 'options.php' ) );
+	$optionsfile = locate_template( $location );
 	
 	// Load settings
 	$optionsframework_settings = get_option('optionsframework' );
 	
 	// Updates the unique option id in the database if it has changed
-	optionsframework_option_name();
-	
-	// Gets the unique id, returning a default if it isn't defined
-	if ( isset( $optionsframework_settings['id'] ) ) {
-		$option_name = $optionsframework_settings['id'];
+	if ( function_exists( 'optionsframework_option_name' ) ) {
+		optionsframework_option_name();
 	}
+	elseif ( has_action( 'optionsframework_option_name' ) ) {
+		do_action( 'optionsframework_option_name' );
+	}
+	// If the developer hasn't explicitly set an option id, we'll use a default
 	else {
-		$option_name = 'options_framework_theme';
+		$default_themename = get_option( 'stylesheet' );
+		$default_themename = preg_replace("/\W/", "_", strtolower($default_themename) );
+		$default_themename = 'optionsframework_' . $default_themename;
+		if ( isset( $optionsframework_settings['id'] ) ) {
+			if ( $optionsframework_settings['id'] == $default_themename ) {
+				// All good, using default theme id
+			} else {
+				$optionsframework_settings['id'] = $default_themename;
+				update_option( 'optionsframework', $optionsframework_settings );
+			}
+		}
+		else {
+			$optionsframework_settings['id'] = $default_themename;
+			update_option( 'optionsframework', $optionsframework_settings );
+		}
 	}
 	
 	// If the option has no saved data, load the defaults
-	if ( ! get_option($option_name) ) {
+	if ( ! get_option( $optionsframework_settings['id'] ) ) {
 		optionsframework_setdefaults();
 	}
-	
+
 	// Registers the settings fields and callback
-	register_setting( 'optionsframework', $option_name, 'optionsframework_validate' );
-	
+	register_setting( 'optionsframework', $optionsframework_settings['id'], 'optionsframework_validate' );
 	// Change the capability required to save the 'optionsframework' options group.
 	add_filter( 'option_page_capability_optionsframework', 'optionsframework_page_capability' );
 }
@@ -145,7 +155,7 @@ function optionsframework_setdefaults() {
 	}
 	
 	// Gets the default options data from the array in options.php
-	$options = optionsframework_options();
+	$options =& _optionsframework_options();
 	
 	// If the options haven't been added to the database yet, they are added now
 	$values = of_get_default_values();
@@ -283,7 +293,7 @@ function optionsframework_validate( $input ) {
 	 */
 	 
 	$clean = array();
-	$options = optionsframework_options();
+	$options =& _optionsframework_options();
 	foreach ( $options as $option ) {
 
 		if ( ! isset( $option['id'] ) ) {
@@ -346,7 +356,7 @@ add_action( 'optionsframework_after_validate', 'optionsframework_save_options_no
  
 function of_get_default_values() {
 	$output = array();
-	$config = optionsframework_options();
+	$config =& _optionsframework_options();
 	foreach ( (array) $config as $option ) {
 		if ( ! isset( $option['id'] ) ) {
 			continue;
@@ -380,29 +390,54 @@ function optionsframework_adminbar() {
 		));
 }
 
-if ( ! function_exists( 'of_get_option' ) ) {
+/**
+ * Wrapper for optionsframework_options()
+ *
+ * Allows for manipulating or setting options via 'of_options' filter
+ * For example:
+ *
+ * <code>
+ * add_filter('of_options', function($options) {
+ *     $options[] = array(
+ *         'name' => 'Input Text Mini',
+ *         'desc' => 'A mini text input field.',
+ *         'id' => 'example_text_mini',
+ *         'std' => 'Default',
+ *         'class' => 'mini',
+ *         'type' => 'text'
+ *     );
+ *
+ *     return $options;
+ * });
+ * </code>
+ *
+ * Also allows for setting options via a return statement in the
+ * options.php file.  For example (in options.php):
+ *
+ * <code>
+ * return array(...);
+ * </code>
+ *
+ * @return array (by reference)
+ */
+function &_optionsframework_options() {
+	static $options = null;
 
-	/**
-	 * Get Option.
-	 *
-	 * Helper function to return the theme option value.
-	 * If no value has been saved, it returns $default.
-	 * Needed because options are saved as serialized strings.
-	 */
-	 
-	function of_get_option( $name, $default = false ) {
-		$config = get_option( 'optionsframework' );
-
-		if ( ! isset( $config['id'] ) ) {
-			return $default;
+	if ( !$options ) {
+		// Load options from options.php file (if it exists)
+		$location = apply_filters( 'options_framework_location', array('options.php') );
+		if ( $optionsfile = locate_template( $location ) ) {
+			$maybe_options = require_once $optionsfile;
+			if ( is_array($maybe_options) ) {
+				$options = $maybe_options;
+			} else if ( function_exists( 'optionsframework_options' ) ) {
+				$options = optionsframework_options();
+			}
 		}
 
-		$options = get_option( $config['id'] );
-
-		if ( isset( $options[$name] ) ) {
-			return $options[$name];
-		}
-
-		return $default;
+		// Allow setting/manipulating options via filters
+		$options = apply_filters('of_options', $options);
 	}
+
+	return $options;
 }

@@ -6,7 +6,7 @@
 
 function optionsframework_tabs() {
 	$counter = 0;
-	$options = optionsframework_options();
+	$options =& _optionsframework_options();
 	$menu = '';
 
 	foreach ( $options as $value ) {
@@ -41,7 +41,7 @@ function optionsframework_fields() {
 	};
 
 	$settings = get_option($option_name);
-	$options = optionsframework_options();
+	$options =& _optionsframework_options();
 
 	$counter = 0;
 	$menu = '';

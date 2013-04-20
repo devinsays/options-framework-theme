@@ -287,29 +287,3 @@ function optionsframework_options() {
 
 	return $options;
 }
-
-/*
- * This is an example of how to add custom scripts to the options panel.
- * This example shows/hides an option when a checkbox is clicked.
- */
-
-add_action('optionsframework_custom_scripts', 'optionsframework_custom_scripts');
-
-function optionsframework_custom_scripts() { ?>
-
-<script type="text/javascript">
-jQuery(document).ready(function($) {
-
-	$('#example_showhidden').click(function() {
-  		$('#section-example_text_hidden').fadeToggle(400);
-	});
-
-	if ($('#example_showhidden:checked').val() !== undefined) {
-		$('#section-example_text_hidden').show();
-	}
-
-});
-</script>
-
-<?php
-}

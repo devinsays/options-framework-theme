@@ -145,14 +145,16 @@ function optionsframework_options() {
 		'type' => 'select',
 		'options' => $test_array);
 
+	if ( $options_categories ) {
 	$options[] = array(
 		'name' => __('Select a Category', 'options_framework_theme'),
 		'desc' => __('Passed an array of categories with cat_ID and cat_name', 'options_framework_theme'),
 		'id' => 'example_select_categories',
 		'type' => 'select',
 		'options' => $options_categories);
+	}
 	
-	if ($options_tags) {
+	if ( $options_tags ) {
 	$options[] = array(
 		'name' => __('Select a Tag', 'options_check'),
 		'desc' => __('Passed an array of tags with term_id and term_name', 'options_check'),

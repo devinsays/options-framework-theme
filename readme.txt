@@ -5,7 +5,7 @@ Tags: options, theme options
 Donate link: http://bit.ly/options-donate-2
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 1.5
+Stable tag: 1.6
 License: GPLv2
 
 == Description ==
@@ -41,7 +41,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
-= Development =
+= 1.6 =
 
 * JS/CSS should only load on options page
 * Make options filterable like plugin version

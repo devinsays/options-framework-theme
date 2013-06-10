@@ -46,6 +46,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * JS/CSS should only load on options page
 * Make options filterable like plugin version
 * Allow media buttons in the editor option
+* Menu settings filter
 * Fix js bindings for upload modal (props @themeblvd)
 
 = 1.5.2 =

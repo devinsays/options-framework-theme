@@ -2,7 +2,7 @@
 	$(document).ready(function() {
 
 		function optionsframework_add_file(event, selector) {
-		
+
 			var upload = $(".uploaded-file"), frame;
 			var $el = $(this);
 
@@ -48,7 +48,7 @@
 			// Finally, open the modal.
 			frame.open();
 		}
-        
+
 		function optionsframework_remove_file(selector) {
 			selector.find('.remove-image').hide();
 			selector.find('.upload').val('');
@@ -64,15 +64,15 @@
 				optionsframework_add_file(event, $(this).parents('.section'));
 			});
 		}
-		
+
 		$('.remove-image, .remove-file').on('click', function() {
 			optionsframework_remove_file( $(this).parents('.section') );
         });
-        
+
         $('.upload-button').click( function( event ) {
         	optionsframework_add_file(event, $(this).parents('.section'));
         });
-        
+
     });
-	
+
 })(jQuery);

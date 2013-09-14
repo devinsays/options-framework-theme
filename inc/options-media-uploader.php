@@ -15,7 +15,7 @@ if ( ! function_exists( 'optionsframework_uploader' ) ) :
 function optionsframework_uploader( $_id, $_value, $_desc = '', $_name = '' ) {
 
 	$optionsframework_settings = get_option( 'optionsframework' );
-	
+
 	// Gets the unique option id
 	if ( isset( $optionsframework_settings['id'] ) ) {
 		$option_name = $optionsframework_settings['id'];
@@ -30,21 +30,21 @@ function optionsframework_uploader( $_id, $_value, $_desc = '', $_name = '' ) {
 	$int = '';
 	$value = '';
 	$name = '';
-	
+
 	$id = strip_tags( strtolower( $_id ) );
-	
+
 	// If a value is passed and we don't have a stored value, use the value that's passed through.
 	if ( $_value != '' && $value == '' ) {
 		$value = $_value;
 	}
-	
+
 	if ( $_name != '' ) {
 		$name = $_name;
 	}
 	else {
 		$name = $option_name.'['.$id.']';
 	}
-	
+
 	if ( $value ) {
 		$class = ' has-file';
 	}
@@ -58,14 +58,14 @@ function optionsframework_uploader( $_id, $_value, $_desc = '', $_name = '' ) {
 	} else {
 		$output .= '<p><i>' . __( 'Upgrade your version of WordPress for full media support.', 'options_framework_theme' ) . '</i></p>';
 	}
-	
+
 	if ( $_desc != '' ) {
 		$output .= '<span class="of-metabox-desc">' . $_desc . '</span>' . "\n";
 	}
-	
+
 	$output .= '<div class="screenshot" id="' . $id . '-image">' . "\n";
-	
-	if ( $value != '' ) { 
+
+	if ( $value != '' ) {
 		$remove = '<a class="remove-image">Remove</a>';
 		$image = preg_match( '/(^.*\.jpg|jpeg|png|gif|ico*)/i', $value );
 		if ( $image ) {
@@ -76,13 +76,13 @@ function optionsframework_uploader( $_id, $_value, $_desc = '', $_name = '' ) {
 				$title = $parts[$i];
 			}
 
-			// No output preview if it's not an image.			
+			// No output preview if it's not an image.
 			$output .= '';
-		
-			// Standard generic output if it's not an image.	
+
+			// Standard generic output if it's not an image.
 			$title = __( 'View File', 'options_framework_theme' );
 			$output .= '<div class="no-image"><span class="file_link"><a href="' . $value . '" target="_blank" rel="external">'.$title.'</a></span></div>';
-		}	
+		}
 	}
 	$output .= '</div>' . "\n";
 	return $output;
@@ -93,7 +93,7 @@ endif;
 /**
  * Enqueue scripts for file uploader
  */
- 
+
 if ( ! function_exists( 'optionsframework_media_scripts' ) ) :
 
 add_action( 'admin_enqueue_scripts', 'optionsframework_media_scripts' );
@@ -101,7 +101,7 @@ add_action( 'admin_enqueue_scripts', 'optionsframework_media_scripts' );
 function optionsframework_media_scripts( $hook ) {
 
 	$menu = optionsframework_menu_settings();
-	
+
 	if ( 'appearance_page_' . $menu['menu_slug'] != $hook )
 		return;
 

@@ -134,11 +134,7 @@ function optionsframework_fields() {
 			$output .= '<select class="of-input" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" id="' . esc_attr( $value['id'] ) . '">';
 
 			foreach ($value['options'] as $key => $option ) {
-				$selected = '';
-				if ( $val != '' ) {
-					if ( $val == $key) { $selected = ' selected="selected"';}
-				}
-				$output .= '<option'. $selected .' value="' . esc_attr( $key ) . '">' . esc_html( $option ) . '</option>';
+				$output .= '<option'. selected( $val, $key, false ) .' value="' . esc_attr( $key ) . '">' . esc_html( $option ) . '</option>';
 			}
 			$output .= '</select>';
 			break;
@@ -158,10 +154,8 @@ function optionsframework_fields() {
 			$name = $option_name .'['. $value['id'] .']';
 			foreach ( $value['options'] as $key => $option ) {
 				$selected = '';
-				if ( $val != '' ) {
-					if ( $val == $key ) {
-						$selected = ' of-radio-img-selected';
-					}
+				if ( $val != '' && ($val == $key) ) {
+					$selected = ' of-radio-img-selected';
 				}
 				$output .= '<input type="radio" id="' . esc_attr( $value['id'] .'_'. $key) . '" class="of-radio-img-radio" value="' . esc_attr( $key ) . '" name="' . esc_attr( $name ) . '" '. checked( $val, $key, false ) .' />';
 				$output .= '<div class="of-radio-img-label">' . esc_html( $key ) . '</div>';
@@ -399,7 +393,7 @@ function optionsframework_fields() {
 		if ( ( $value['type'] != "heading" ) && ( $value['type'] != "info" ) ) {
 			$output .= '</div>';
 			if ( ( $value['type'] != "checkbox" ) && ( $value['type'] != "editor" ) ) {
-				$output .= '<div class="explain">' . wp_kses( $explain_value, $allowedtags) . '</div>'."\n";
+				$output .= '<div class="explain">' . wp_kses( $explain_value, $allowedtags ) . '</div>'."\n";
 			}
 			$output .= '</div></div>'."\n";
 		}

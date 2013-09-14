@@ -44,6 +44,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 = 1.6.1 =
 
 * Fix for update notice location
+* Use checked() function more consistently (props @vinodvdalvi)
 
 = 1.6 =
 

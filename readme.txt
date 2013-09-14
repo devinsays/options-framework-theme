@@ -3,8 +3,8 @@
 Contributors: Devin Price
 Tags: options, theme options
 Donate link: http://bit.ly/options-donate-2
-Requires at least: 3.3
-Tested up to: 3.5
+Requires at least: 3.4
+Tested up to: 3.6
 Stable tag: 1.6
 License: GPLv2
 
@@ -40,6 +40,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * editor
 
 == Changelog ==
+
+= 1.6.1 =
+
+* Fix for update notice location
 
 = 1.6 =
 

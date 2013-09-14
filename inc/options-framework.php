@@ -44,7 +44,7 @@ function optionsframework_load_sanitization() {
 	require_once dirname( __FILE__ ) . '/options-sanitize.php';
 }
 
-/* 
+/*
  * Creates the settings in the database by looping through the array
  * we supplied in options.php.  This is a neat way to do it since
  * we won't have to save settings for headers, descriptions, or arguments.
@@ -59,14 +59,14 @@ function optionsframework_init() {
 	// Include the required files
 	require_once dirname( __FILE__ ) . '/options-interface.php';
 	require_once dirname( __FILE__ ) . '/options-media-uploader.php';
-	
+
 	// Optionally Loads the options file from the theme
 	$location = apply_filters( 'options_framework_location', array( 'options.php' ) );
 	$optionsfile = locate_template( $location );
-	
+
 	// Load settings
 	$optionsframework_settings = get_option('optionsframework' );
-	
+
 	// Updates the unique option id in the database if it has changed
 	if ( function_exists( 'optionsframework_option_name' ) ) {
 		optionsframework_option_name();
@@ -92,7 +92,7 @@ function optionsframework_init() {
 			update_option( 'optionsframework', $optionsframework_settings );
 		}
 	}
-	
+
 	// If the option has no saved data, load the defaults
 	if ( ! get_option( $optionsframework_settings['id'] ) ) {
 		optionsframework_setdefaults();
@@ -116,7 +116,7 @@ function optionsframework_page_capability( $capability ) {
 	return 'edit_theme_options';
 }
 
-/* 
+/*
  * Adds default options to the database if they aren't already present.
  * May update this later to load only on plugin activation, or theme
  * activation since most people won't be editing the options.php
@@ -127,20 +127,20 @@ function optionsframework_page_capability( $capability ) {
  */
 
 function optionsframework_setdefaults() {
-	
+
 	$optionsframework_settings = get_option( 'optionsframework' );
 
 	// Gets the unique option id
 	$option_name = $optionsframework_settings['id'];
-	
-	/* 
+
+	/*
 	 * Each theme will hopefully have a unique id, and all of its options saved
 	 * as a separate option set.  We need to track all of these option sets so
 	 * it can be easily deleted if someone wishes to remove the plugin and
-	 * its associated data.  No need to clutter the database.  
+	 * its associated data.  No need to clutter the database.
 	 *
 	 */
-	
+
 	if ( isset( $optionsframework_settings['knownoptions'] ) ) {
 		$knownoptions =  $optionsframework_settings['knownoptions'];
 		if ( !in_array( $option_name, $knownoptions ) ) {
@@ -153,13 +153,13 @@ function optionsframework_setdefaults() {
 		$optionsframework_settings['knownoptions'] = $newoptionname;
 		update_option( 'optionsframework', $optionsframework_settings );
 	}
-	
+
 	// Gets the default options data from the array in options.php
 	$options =& _optionsframework_options();
-	
+
 	// If the options haven't been added to the database yet, they are added now
 	$values = of_get_default_values();
-	
+
 	if ( isset( $values ) ) {
 		add_option( $option_name, $values ); // Add option with default settings
 	}
@@ -231,7 +231,7 @@ function optionsframework_load_scripts( $hook ) {
 		);
 		wp_localize_script( 'wp-color-picker', 'wpColorPickerL10n', $colorpicker_l10n );
 	}
-	
+
 	// Enqueue custom option panel JS
 	wp_enqueue_script( 'options-custom', OPTIONS_FRAMEWORK_DIRECTORY . 'js/options-custom.js', array( 'jquery','wp-color-picker' ) );
 
@@ -244,7 +244,7 @@ function of_admin_head() {
 	do_action( 'optionsframework_custom_scripts' );
 }
 
-/* 
+/*
  * Builds out the options panel.
  *
  * If we were using the Settings API as it was likely intended we would use
@@ -257,14 +257,15 @@ function of_admin_head() {
  */
 
 if ( !function_exists( 'optionsframework_page' ) ) :
-function optionsframework_page() {
-	settings_errors(); ?>
+function optionsframework_page() { ?>
 
 	<div id="optionsframework-wrap" class="wrap">
     <?php screen_icon( 'themes' ); ?>
     <h2 class="nav-tab-wrapper">
         <?php echo optionsframework_tabs(); ?>
     </h2>
+
+    <?php settings_errors( 'options-framework' ); ?>
 
     <div id="optionsframework-metabox" class="metabox-holder">
 	    <div id="optionsframework" class="postbox">
@@ -281,7 +282,7 @@ function optionsframework_page() {
 	</div>
 	<?php do_action( 'optionsframework_after' ); ?>
 	</div> <!-- / .wrap -->
-	
+
 <?php
 }
 endif;
@@ -308,14 +309,14 @@ function optionsframework_validate( $input ) {
 		add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'options_framework_theme' ), 'updated fade' );
 		return of_get_default_values();
 	}
-	
+
 	/*
 	 * Update Settings
 	 *
 	 * This used to check for $_POST['update'], but has been updated
 	 * to be compatible with the theme customizer introduced in WordPress 3.4
 	 */
-	 
+
 	$clean = array();
 	$options =& _optionsframework_options();
 	foreach ( $options as $option ) {
@@ -347,17 +348,17 @@ function optionsframework_validate( $input ) {
 			$clean[$id] = apply_filters( 'of_sanitize_' . $option['type'], $input[$id], $option );
 		}
 	}
-	
+
 	// Hook to run after validation
 	do_action( 'optionsframework_after_validate', $clean );
-	
+
 	return $clean;
 }
 
 /**
  * Display message when options have been saved
  */
- 
+
 function optionsframework_save_options_notice() {
 	add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'options_framework_theme' ), 'updated fade' );
 }
@@ -377,7 +378,7 @@ add_action( 'optionsframework_after_validate', 'optionsframework_save_options_no
  *
  * @access    private
  */
- 
+
 function of_get_default_values() {
 	$output = array();
 	$config =& _optionsframework_options();

@@ -45,6 +45,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 * Fix for update notice location
 * Use checked() function more consistently (props @vinodvdalvi)
+* Reuse media modal for uploads
 
 = 1.6 =
 

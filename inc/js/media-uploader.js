@@ -1,21 +1,22 @@
-(function($) {
-	$(document).ready(function() {
+jQuery(document).ready(function($){
 
-		function optionsframework_add_file(event, selector) {
+	var optionsframework_upload;
+	var optionsframework_selector;
 
-			var upload = $(".uploaded-file"), frame;
-			var $el = $(this);
+	function optionsframework_add_file(event, selector) {
 
-			event.preventDefault();
+		var upload = $(".uploaded-file"), frame;
+		var $el = $(this);
+		optionsframework_selector = selector;
 
-			// If the media frame already exists, reopen it.
-			if ( frame ) {
-				frame.open();
-				return;
-			}
+		event.preventDefault();
 
+		// If the media frame already exists, reopen it.
+		if ( optionsframework_upload ) {
+			optionsframework_upload.open();
+		} else {
 			// Create the media frame.
-			frame = wp.media({
+			optionsframework_upload = wp.media.frames.optionsframework_upload =  wp.media({
 				// Set the title of the modal.
 				title: $el.data('choose'),
 
@@ -30,49 +31,49 @@
 			});
 
 			// When an image is selected, run a callback.
-			frame.on( 'select', function() {
+			optionsframework_upload.on( 'select', function() {
 				// Grab the selected attachment.
-				var attachment = frame.state().get('selection').first();
-				frame.close();
-				selector.find('.upload').val(attachment.attributes.url);
+				var attachment = optionsframework_upload.state().get('selection').first();
+				optionsframework_upload.close();
+				optionsframework_selector.find('.upload').val(attachment.attributes.url);
 				if ( attachment.attributes.type == 'image' ) {
-					selector.find('.screenshot').empty().hide().append('<img src="' + attachment.attributes.url + '"><a class="remove-image">Remove</a>').slideDown('fast');
+					optionsframework_selector.find('.screenshot').empty().hide().append('<img src="' + attachment.attributes.url + '"><a class="remove-image">Remove</a>').slideDown('fast');
 				}
-				selector.find('.upload-button').unbind().addClass('remove-file').removeClass('upload-button').val(optionsframework_l10n.remove);
-				selector.find('.of-background-properties').slideDown();
-				selector.find('.remove-image, .remove-file').on('click', function() {
+				optionsframework_selector.find('.upload-button').unbind().addClass('remove-file').removeClass('upload-button').val(optionsframework_l10n.remove);
+				optionsframework_selector.find('.of-background-properties').slideDown();
+				optionsframework_selector.find('.remove-image, .remove-file').on('click', function() {
 					optionsframework_remove_file( $(this).parents('.section') );
 				});
 			});
 
-			// Finally, open the modal.
-			frame.open();
 		}
 
-		function optionsframework_remove_file(selector) {
-			selector.find('.remove-image').hide();
-			selector.find('.upload').val('');
-			selector.find('.of-background-properties').hide();
-			selector.find('.screenshot').slideUp();
-			selector.find('.remove-file').unbind().addClass('upload-button').removeClass('remove-file').val(optionsframework_l10n.upload);
-			// We don't display the upload button if .upload-notice is present
-			// This means the user doesn't have the WordPress 3.5 Media Library Support
-			if ( $('.section-upload .upload-notice').length > 0 ) {
-				$('.upload-button').remove();
-			}
-			selector.find('.upload-button').on('click', function(event) {
-				optionsframework_add_file(event, $(this).parents('.section'));
-			});
+		// Finally, open the modal.
+		optionsframework_upload.open();
+	}
+
+	function optionsframework_remove_file(selector) {
+		selector.find('.remove-image').hide();
+		selector.find('.upload').val('');
+		selector.find('.of-background-properties').hide();
+		selector.find('.screenshot').slideUp();
+		selector.find('.remove-file').unbind().addClass('upload-button').removeClass('remove-file').val(optionsframework_l10n.upload);
+		// We don't display the upload button if .upload-notice is present
+		// This means the user doesn't have the WordPress 3.5 Media Library Support
+		if ( $('.section-upload .upload-notice').length > 0 ) {
+			$('.upload-button').remove();
 		}
+		selector.find('.upload-button').on('click', function(event) {
+			optionsframework_add_file(event, $(this).parents('.section'));
+		});
+	}
 
-		$('.remove-image, .remove-file').on('click', function() {
-			optionsframework_remove_file( $(this).parents('.section') );
-        });
-
-        $('.upload-button').click( function( event ) {
-        	optionsframework_add_file(event, $(this).parents('.section'));
-        });
-
+	$('.remove-image, .remove-file').on('click', function() {
+		optionsframework_remove_file( $(this).parents('.section') );
     });
 
-})(jQuery);
+    $('.upload-button').click( function( event ) {
+    	optionsframework_add_file(event, $(this).parents('.section'));
+    });
+
+});

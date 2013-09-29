@@ -1,14 +1,14 @@
 /* Options Framework Admin Styles */
 
 .updated {
-	max-width:764px;
-	margin-bottom:0px !important;
+	max-width: 764px;
+	margin-bottom: 0 !important;
 }
 #optionsframework {
-	position:relative;
+	position: relative;
 	z-index: 0;
-	max-width:780px;
-	background:#fff;
+	max-width: 780px;
+	background: #fff;
 }
 #optionsframework h3 {
 	cursor: default;
@@ -19,53 +19,53 @@
 	line-height: 1.4em;
 }
 #optionsframework .section {
-	padding:10px 10px 0;
+	padding: 10px 10px 0;
 }
 #optionsframework .group {
-	padding-bottom:40px;
+	padding-bottom: 40px;
 }
 #optionsframework .section .heading {
-	padding:10px 0px;
-	margin:0 0 15px;
+	padding: 10px 0;
+	margin: 0 0 15px;
 	border-bottom: 1px solid #dfdfdf;
 }
 #optionsframework .section .controls {
 	float: left;
-	min-width:350px;
+	min-width: 350px;
 	width: 54%;
-	padding-right:2%;
+	padding-right: 2%;
 }
 #optionsframework .section .explain {
-	max-width:38%;
+	max-width: 38%;
 	float: left;
 	font-size: 12px;
-	line-height:16px;
+	line-height: 16px;
 	color: #777;
 }
 #optionsframework .section-checkbox .controls {
 	width: 98%;
 }
 #optionsframework .section-checkbox .explain {
-	max-width:94%;
+	max-width: 94%;
 }
 #optionsframework .of-input {
-	width:100%;
+	width: 100%;
 }
 #optionsframework .controls select, #optionsframework .controls textarea {
-	margin-bottom:10px;
-	width:100%;
+	margin-bottom: 10px;
+	width: 100%;
 }
 #optionsframework .section-radio label, #optionsframework .section-multicheck label {
-	float:left;
-	max-width:90%;
+	float: left;
+	max-width: 90%;
 	line-height: 16px;
 	margin-bottom: 5px;
 }
 #optionsframework input.checkbox, #optionsframework input.of-radio {
 	width: 30px;
-	margin-top:2px;
-	float:left;
-	clear:both;
+	margin-top: 2px;
+	float: left;
+	clear: both;
 }
 #optionsframework .section-typography .controls {
 	float:none;
@@ -212,7 +212,7 @@
 	margin-left: 20px;
 }
 #optionsframework .screenshot .no_image .remove-button {
-	bottom: 0px;
+	bottom: 0;
 }
 #optionsframework .reset-button {
 	float:left;

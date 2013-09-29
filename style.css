@@ -42,3 +42,7 @@ header {
 .entry-content {
 	padding:20px 40px;
 }
+
+.entry-content img {
+	max-width: 100%;
+}

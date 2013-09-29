@@ -6,9 +6,9 @@ add_filter( 'of_sanitize_text', 'sanitize_text_field' );
 
 /* Textarea */
 
-function of_sanitize_textarea($input) {
+function of_sanitize_textarea( $input ) {
 	global $allowedposttags;
-	$output = wp_kses( $input, $allowedposttags);
+	$output = wp_kses( $input, $allowedposttags );
 	return $output;
 }
 
@@ -16,15 +16,15 @@ add_filter( 'of_sanitize_textarea', 'of_sanitize_textarea' );
 
 /* Select */
 
-add_filter( 'of_sanitize_select', 'of_sanitize_enum', 10, 2);
+add_filter( 'of_sanitize_select', 'of_sanitize_enum', 10, 2 );
 
 /* Radio */
 
-add_filter( 'of_sanitize_radio', 'of_sanitize_enum', 10, 2);
+add_filter( 'of_sanitize_radio', 'of_sanitize_enum', 10, 2 );
 
 /* Images */
 
-add_filter( 'of_sanitize_images', 'of_sanitize_enum', 10, 2);
+add_filter( 'of_sanitize_images', 'of_sanitize_enum', 10, 2 );
 
 /* Checkbox */
 

@@ -218,7 +218,7 @@ function optionsframework_load_scripts( $hook ) {
 	$menu = optionsframework_menu_settings();
 
 	if ( 'appearance_page_' . $menu['menu_slug'] != $hook )
-        return;
+		return;
 
 	// Enqueue colorpicker scripts for versions below 3.5 for compatibility
 	if ( !wp_script_is( 'wp-color-picker', 'registered' ) ) {
@@ -260,15 +260,15 @@ if ( !function_exists( 'optionsframework_page' ) ) :
 function optionsframework_page() { ?>
 
 	<div id="optionsframework-wrap" class="wrap">
-    <?php screen_icon( 'themes' ); ?>
-    <h2 class="nav-tab-wrapper">
-        <?php echo optionsframework_tabs(); ?>
-    </h2>
+	<?php screen_icon( 'themes' ); ?>
+	<h2 class="nav-tab-wrapper">
+		<?php echo optionsframework_tabs(); ?>
+	</h2>
 
-    <?php settings_errors( 'options-framework' ); ?>
+	<?php settings_errors( 'options-framework' ); ?>
 
-    <div id="optionsframework-metabox" class="metabox-holder">
-	    <div id="optionsframework" class="postbox">
+	<div id="optionsframework-metabox" class="metabox-holder">
+		<div id="optionsframework" class="postbox">
 			<form action="options.php" method="post">
 			<?php settings_fields( 'optionsframework' ); ?>
 			<?php optionsframework_fields(); /* Settings */ ?>

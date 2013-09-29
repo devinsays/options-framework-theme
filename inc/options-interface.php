@@ -16,7 +16,7 @@ function optionsframework_tabs() {
 			$class = '';
 			$class = ! empty( $value['id'] ) ? $value['id'] : $value['name'];
 			$class = preg_replace('/[^a-zA-Z0-9._\-]/', '', strtolower($class) ) . '-tab';
-			$menu .= '<a id="options-group-'.  $counter . '-tab" class="nav-tab ' . $class .'" title="' . esc_attr( $value['name'] ) . '" href="' . esc_attr( '#options-group-'.  $counter ) . '">' . esc_html( $value['name'] ) . '</a>';
+			$menu .= '<a id="options-group-' . $counter . '-tab" class="nav-tab ' . $class .'" title="' . esc_attr( $value['name'] ) . '" href="' . esc_attr( '#options-group-' . $counter ) . '">' . esc_html( $value['name'] ) . '</a>';
 		}
 	}
 
@@ -192,7 +192,7 @@ function optionsframework_fields() {
 			$default_color = '';
 			if ( isset($value['std']) ) {
 				if ( $val !=  $value['std'] )
-					$default_color = ' data-default-color="' .$value['std'] . '" ';
+					$default_color = ' data-default-color="' . $value['std'] . '" ';
 			}
 			$output .= '<input name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" id="' . esc_attr( $value['id'] ) . '" class="of-color"  type="text" value="' . esc_attr( $val ) . '"' . $default_color .' />';
 

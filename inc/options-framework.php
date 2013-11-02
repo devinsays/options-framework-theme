@@ -455,10 +455,18 @@ function &_optionsframework_options() {
 			$maybe_options = require_once $optionsfile;
 			if ( is_array($maybe_options) ) {
 				$options = $maybe_options;
-			} else if ( function_exists( 'optionsframework_options' ) ) {
-				$options = optionsframework_options();
 			}
 		}
+
+        if (!is_array($options)) {
+            if ( function_exists( 'optionsframework_options' ) ) {
+                $options = optionsframework_options();
+            }
+            else
+            {
+                $options = array();
+            }
+        }
 
 		// Allow setting/manipulating options via filters
 		$options = apply_filters('of_options', $options);

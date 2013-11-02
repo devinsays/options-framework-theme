@@ -446,33 +446,30 @@ function optionsframework_adminbar() {
  * @return array (by reference)
  */
 function &_optionsframework_options() {
-	static $options = null;
+        static $options = null;
 
-	if ( !$options ) {
-		// Load options from options.php file (if it exists)
-		$location = apply_filters( 'options_framework_location', array('options.php') );
-		if ( $optionsfile = locate_template( $location ) ) {
-			$maybe_options = require_once $optionsfile;
-			if ( is_array($maybe_options) ) {
-				$options = $maybe_options;
-			}
-		}
+        if ( !$options ) {
+                // Load options from options.php file (if it exists)
+                $location = apply_filters( 'options_framework_location', array('options.php') );
+                if ( $optionsfile = locate_template( $location ) ) {
+                        $maybe_options = require_once $optionsfile;
+                        if ( is_array($maybe_options) ) {
+                                $options = $maybe_options;
+                        } else if ( function_exists( 'optionsframework_options' ) ) {
+                                $options = optionsframework_options();
+                        }
+                }
 
-        if (!is_array($options)) {
-            if ( function_exists( 'optionsframework_options' ) ) {
-                $options = optionsframework_options();
-            }
-            else
-            {
-                $options = array();
-            }
+                // Allow setting/manipulating options via filters
+                $options = apply_filters('of_options', $options);
         }
 
-		// Allow setting/manipulating options via filters
-		$options = apply_filters('of_options', $options);
-	}
+		// Avoid error on settings page if $options array not set
+		if ( !is_array( $options ) ) {
+			$options = array();
+		}
 
-	return $options;
+        return $options;
 }
 
 /**

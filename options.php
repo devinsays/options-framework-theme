@@ -65,7 +65,7 @@ function optionsframework_options() {
 		'face' => 'georgia',
 		'style' => 'bold',
 		'color' => '#bada55' );
-		
+
 	// Typography Options
 	$typography_options = array(
 		'sizes' => array( '6','12','14','16','20' ),
@@ -80,7 +80,7 @@ function optionsframework_options() {
 	foreach ($options_categories_obj as $category) {
 		$options_categories[$category->cat_ID] = $category->cat_name;
 	}
-	
+
 	// Pull all tags into an array
 	$options_tags = array();
 	$options_tags_obj = get_tags();
@@ -153,7 +153,7 @@ function optionsframework_options() {
 		'type' => 'select',
 		'options' => $options_categories);
 	}
-	
+
 	if ( $options_tags ) {
 	$options[] = array(
 		'name' => __('Select a Tag', 'options_check'),
@@ -199,7 +199,7 @@ function optionsframework_options() {
 		'desc' => __('Click here and see what happens.', 'options_framework_theme'),
 		'id' => 'example_showhidden',
 		'type' => 'checkbox');
-		
+
 	$options[] = array(
 		'name' => __('Hidden Text Input', 'options_framework_theme'),
 		'desc' => __('This option is hidden unless activated by a checkbox click.', 'options_framework_theme'),
@@ -247,13 +247,13 @@ function optionsframework_options() {
 		'id' => 'example_colorpicker',
 		'std' => '',
 		'type' => 'color' );
-		
+
 	$options[] = array( 'name' => __('Typography', 'options_framework_theme'),
 		'desc' => __('Example typography.', 'options_framework_theme'),
 		'id' => "example_typography",
 		'std' => $typography_defaults,
 		'type' => 'typography' );
-		
+
 	$options[] = array(
 		'name' => __('Custom Typography', 'options_framework_theme'),
 		'desc' => __('Custom typography options.', 'options_framework_theme'),
@@ -279,7 +279,7 @@ function optionsframework_options() {
 		'textarea_rows' => 5,
 		'tinymce' => array( 'plugins' => 'wordpress' )
 	);
-	
+
 	$options[] = array(
 		'name' => __('Default Text Editor', 'options_framework_theme'),
 		'desc' => sprintf( __( 'You can also pass settings to the editor.  Read more about wp_editor in <a href="%1$s" target="_blank">the WordPress codex</a>', 'options_framework_theme' ), 'http://codex.wordpress.org/Function_Reference/wp_editor' ),

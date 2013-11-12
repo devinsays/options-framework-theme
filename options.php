@@ -242,6 +242,14 @@ function optionsframework_options() {
 		'options' => $multicheck_array);
 
 	$options[] = array(
+		'name' => __('Multiselect', 'options_framework_theme'),
+		'desc' => __('Multiselect description.', 'options_framework_theme'),
+		'id' => 'example_multiselect',
+		'std' => $multicheck_defaults, // These items get selectd by default
+		'type' => 'multiselect',
+		'options' => $multicheck_array);
+
+	$options[] = array(
 		'name' => __('Colorpicker', 'options_framework_theme'),
 		'desc' => __('No color selected by default.', 'options_framework_theme'),
 		'id' => 'example_colorpicker',

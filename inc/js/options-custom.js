@@ -5,9 +5,6 @@
 
 jQuery(document).ready(function($) {
 
-	// Fade out the save message
-	$('.fade').delay(1000).fadeOut(1000);
-
 	$('.of-color').wpColorPicker();
 
 	// Switches option sections

@@ -3,9 +3,9 @@
 Contributors: Devin Price
 Tags: options, theme options
 Donate link: http://bit.ly/options-donate-2
-Requires at least: 3.4
-Tested up to: 3.6
-Stable tag: 1.6
+Requires at least: 3.6
+Tested up to: 3.8
+Stable tag: 1.7
 License: GPLv2
 
 == Description ==
@@ -40,6 +40,11 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * editor
 
 == Changelog ==
+
+= 1.7.0 =
+
+* Update to class based plugin (large code refactor)
+* Drop color picker support for older versions of WordPress
 
 = 1.6.1 =
 

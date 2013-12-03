@@ -55,10 +55,10 @@ class Options_Framework_Admin {
     function settings_init() {
 
     	// Load Options Framework Settings
-        $optionsframework_settings = get_option( 'textdomain' );
+        $optionsframework_settings = get_option( 'optionsframework' );
 
 		// Registers the settings fields and callback
-		register_setting( 'textdomain', $optionsframework_settings['id'],  array ( $this, 'validate_options' ) );
+		register_setting( 'optionsframework', $optionsframework_settings['id'],  array ( $this, 'validate_options' ) );
 
 		// Displays notice after options save
 		add_action( 'optionsframework_after_validate', array( $this, 'save_options_notice' ) );
@@ -165,7 +165,7 @@ class Options_Framework_Admin {
 	    <div id="optionsframework-metabox" class="metabox-holder">
 		    <div id="optionsframework" class="postbox">
 				<form action="options.php" method="post">
-				<?php settings_fields( 'textdomain' ); ?>
+				<?php settings_fields( 'optionsframework' ); ?>
 				<?php Options_Framework_Interface::optionsframework_fields(); /* Settings */ ?>
 				<div id="optionsframework-submit">
 					<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options', 'textdomain' ); ?>" />

@@ -26,12 +26,13 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-if ( ! class_exists( 'Options_Framework' ) ) :
+// Don't load if optionsframework_init is already defined
+if ( ! function_exists( 'optionsframework_init' ) ) :
 
 function optionsframework_init() {
 
 	//  If user can't edit theme options, exit
-	if ( !current_user_can( 'edit_theme_options' ) )
+	if ( ! current_user_can( 'edit_theme_options' ) )
 		return;
 
 	// Loads the required Options Framework classes.

@@ -43,40 +43,9 @@ class Options_Framework_Admin {
 			// Adds options menu to the admin bar
 			add_action( 'wp_before_admin_bar_render', array( $this, 'optionsframework_admin_bar' ) );
 
-		} else {
-			// Display a notice if options aren't present in the theme
-			add_action( 'admin_notices', array( $this, 'options_notice' ) );
-			add_action( 'admin_init', array( $this, 'options_notice_ignore' ) );
 		}
 
     }
-
-	/**
-     * Let's the user know that options aren't available for their theme
-     */
-    function options_notice() {
-		global $pagenow;
-        if ( !is_multisite() && ( $pagenow == 'plugins.php' || $pagenow == 'themes.php' ) ) {
-			global $current_user ;
-			$user_id = $current_user->ID;
-			if ( ! get_user_meta($user_id, 'optionsframework_ignore_notice') ) {
-				echo '<div class="updated optionsframework_setup_nag"><p>';
-				printf( __('Your current theme does not have support for the Options Framework plugin.  <a href="%1$s" target="_blank">Learn More</a> | <a href="%2$s">Hide Notice</a>', 'optionsframework'), 'http://wptheming.com/options-framework-plugin', '?optionsframework_nag_ignore=0');
-				echo "</p></div>";
-			}
-        }
-	}
-
-	/**
-     * Allows the user to hide the options notice
-     */
-	function options_notice_ignore() {
-		global $current_user;
-		$user_id = $current_user->ID;
-		if ( isset( $_GET['optionsframework_nag_ignore'] ) && '0' == $_GET['optionsframework_nag_ignore'] ) {
-			add_user_meta( $user_id, 'optionsframework_ignore_notice', 'true', true );
-		}
-	}
 
 	/**
      * Registers the settings
@@ -86,10 +55,10 @@ class Options_Framework_Admin {
     function settings_init() {
 
     	// Load Options Framework Settings
-        $optionsframework_settings = get_option( 'optionsframework' );
+        $optionsframework_settings = get_option( 'textdomain' );
 
 		// Registers the settings fields and callback
-		register_setting( 'optionsframework', $optionsframework_settings['id'],  array ( $this, 'validate_options' ) );
+		register_setting( 'textdomain', $optionsframework_settings['id'],  array ( $this, 'validate_options' ) );
 
 		// Displays notice after options save
 		add_action( 'optionsframework_after_validate', array( $this, 'save_options_notice' ) );
@@ -113,8 +82,8 @@ class Options_Framework_Admin {
 	static function menu_settings() {
 
 		$menu = array(
-			'page_title' => __( 'Theme Options', 'optionsframework'),
-			'menu_title' => __('Theme Options', 'optionsframework'),
+			'page_title' => __( 'Theme Options', 'textdomain' ),
+			'menu_title' => __( 'Theme Options', 'textdomain' ),
 			'capability' => 'edit_theme_options',
 			'menu_slug' => 'options-framework'
 		);
@@ -196,11 +165,11 @@ class Options_Framework_Admin {
 	    <div id="optionsframework-metabox" class="metabox-holder">
 		    <div id="optionsframework" class="postbox">
 				<form action="options.php" method="post">
-				<?php settings_fields( 'optionsframework' ); ?>
+				<?php settings_fields( 'textdomain' ); ?>
 				<?php Options_Framework_Interface::optionsframework_fields(); /* Settings */ ?>
 				<div id="optionsframework-submit">
-					<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options', 'optionsframework' ); ?>" />
-					<input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults', 'optionsframework' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'optionsframework' ) ); ?>' );" />
+					<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options', 'textdomain' ); ?>" />
+					<input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults', 'textdomain' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'textdomain' ) ); ?>' );" />
 					<div class="clear"></div>
 				</div>
 				</form>
@@ -231,7 +200,7 @@ class Options_Framework_Admin {
 		 */
 
 		if ( isset( $_POST['reset'] ) ) {
-			add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'optionsframework' ), 'updated fade' );
+			add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'textdomain' ), 'updated fade' );
 			return $this->get_default_values();
 		}
 
@@ -285,7 +254,7 @@ class Options_Framework_Admin {
 	 */
 
 	function save_options_notice() {
-		add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'optionsframework' ), 'updated fade' );
+		add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'textdomain' ), 'updated fade' );
 	}
 
 	/**
@@ -333,7 +302,7 @@ class Options_Framework_Admin {
 		$wp_admin_bar->add_menu( array(
 			'parent' => 'appearance',
 			'id' => 'of_theme_options',
-			'title' => __( 'Theme Options', 'optionsframework' ),
+			'title' => __( 'Theme Options', 'textdomain' ),
 			'href' => admin_url( 'themes.php?page=' . $menu['menu_slug'] )
 		) );
 	}

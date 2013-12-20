@@ -141,7 +141,9 @@
 #optionsframework .mini .explain {
 	max-width:74%;
 }
-
+#optionsframework .wide .controls input {
+	width: 100%;
+}
 /* Editor */
 
 #optionsframework .section-editor .explain {

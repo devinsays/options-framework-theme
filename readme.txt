@@ -41,6 +41,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
+= 1.7.2 =
+
+* Increase text input width
+
 = 1.7.0 =
 
 * Update to class based plugin (large code refactor)

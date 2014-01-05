@@ -32,6 +32,9 @@
 	line-height:16px;
 	color: #777;
 }
+#optionsframework .controls input[type=text] {
+	width:100%;
+}
 #optionsframework .section-checkbox .controls {
 	width: 98%;
 }

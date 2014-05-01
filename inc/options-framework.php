@@ -6,13 +6,13 @@
  * @author    Devin Price <devin@wptheming.com>
  * @license   GPL-2.0+
  * @link      http://wptheming.com
- * @copyright 2013 WP Theming
+ * @copyright 2010-2014 WP Theming
  *
  * @wordpress-plugin
  * Plugin Name: Options Framework
  * Plugin URI:  http://wptheming.com
  * Description: A framework for building theme options.
- * Version:     1.7.2
+ * Version:     1.8.0
  * Author:      Devin Price
  * Author URI:  http://wptheming.com
  * License:     GPL-2.0+

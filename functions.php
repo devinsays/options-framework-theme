@@ -16,7 +16,6 @@ require_once dirname( __FILE__ ) . '/inc/options-framework.php';
  *
  * You can delete it if you not using that option
  */
-
 add_action( 'optionsframework_custom_scripts', 'optionsframework_custom_scripts' );
 
 function optionsframework_custom_scripts() { ?>
@@ -37,3 +36,19 @@ jQuery(document).ready(function() {
 
 <?php
 }
+
+/*
+ * This is an example of filtering menu parameters
+ */
+
+/*
+function prefix_options_menu_filter( $menu ) {
+	$menu['mode'] = 'menu';
+	$menu['page_title'] = __( 'Hello Options', 'textdomain');
+	$menu['menu_title'] = __( 'Hello Options', 'textdomain');
+	$menu['menu_slug'] = 'hello-options';
+	return $menu;
+}
+
+add_filter( 'optionsframework_menu', 'prefix_options_menu_filter' );
+*/

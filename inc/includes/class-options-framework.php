@@ -4,7 +4,7 @@
  * @author    Devin Price <devin@wptheming.com>
  * @license   GPL-2.0+
  * @link      http://wptheming.com
- * @copyright 2013 WP Theming
+ * @copyright 2010-2014 WP Theming
  */
 
 class Options_Framework {
@@ -15,7 +15,7 @@ class Options_Framework {
 	 * @since 1.7.0
 	 * @type string
 	 */
-	const VERSION = '1.7.2';
+	const VERSION = '1.8.0';
 
 	/**
 	 * Initialize the plugin.
@@ -102,7 +102,7 @@ class Options_Framework {
 
 		if ( !$options ) {
 	        // Load options from options.php file (if it exists)
-	        $location = apply_filters( 'options_framework_location', array('options.php') );
+	        $location = apply_filters( 'options_framework_location', array( 'options.php' ) );
 	        if ( $optionsfile = locate_template( $location ) ) {
 	            $maybe_options = require_once $optionsfile;
 	            if ( is_array( $maybe_options ) ) {

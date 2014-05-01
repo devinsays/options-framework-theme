@@ -4,8 +4,8 @@ Contributors: Devin Price
 Tags: options, theme options
 Donate link: http://bit.ly/options-donate-2
 Requires at least: 3.6
-Tested up to: 3.8
-Stable tag: 1.7
+Tested up to: 3.9
+Stable tag: 1.8
 License: GPLv2
 
 == Description ==
@@ -46,6 +46,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Fix for colorpicker spacing
 * Better sanitization of upload option
 * Use filtered values for optionsframework_admin_bar
+* More filters for menu location
 
 = 1.7.2 =
 

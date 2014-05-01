@@ -41,6 +41,12 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
+= 1.8.0 =
+
+* Fix for colorpicker spacing
+* Better sanitization of upload option
+* Use filtered values for optionsframework_admin_bar
+
 = 1.7.2 =
 
 * Increase text input width

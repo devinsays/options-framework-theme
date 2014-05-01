@@ -32,14 +32,17 @@
 	line-height:16px;
 	color: #777;
 }
-#optionsframework .controls input[type=text] {
-	width:100%;
-}
 #optionsframework .section-checkbox .controls {
 	width: 98%;
 }
 #optionsframework .section-checkbox .explain {
 	max-width:94%;
+}
+#optionsframework .controls input[type=text] {
+	width:100%;
+}
+#optionsframework .controls input[type=text].wp-color-picker {
+    width: 65px;
 }
 #optionsframework .controls select, #optionsframework .controls textarea {
 	margin-bottom:10px;
@@ -83,6 +86,9 @@
 	margin-left:5px;
 	margin-right:5px;
 	float:left
+}
+#optionsframework .section-typography .wp-picker-container {
+	margin-top:2px;
 }
 #optionsframework .of-background-properties {
 	clear:both;

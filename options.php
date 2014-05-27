@@ -122,6 +122,13 @@ function optionsframework_options() {
 		'type' => 'text');
 
 	$options[] = array(
+		'name' => __('Input with Placeholder', 'options_framework_theme'),
+		'desc' => __('A text input field with an HTML5 placeholder.', 'options_framework_theme'),
+		'id' => 'example_placeholder',
+		'placeholder' => 'Placeholder',
+		'type' => 'text');
+
+	$options[] = array(
 		'name' => __('Textarea', 'options_framework_theme'),
 		'desc' => __('Textarea description.', 'options_framework_theme'),
 		'id' => 'example_textarea',

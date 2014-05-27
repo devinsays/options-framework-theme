@@ -47,6 +47,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Better sanitization of upload option
 * Use filtered values for optionsframework_admin_bar
 * More filters for menu location
+* Placeholders can be used with text and textarea options (@Furex)
 
 #### 1.7.2
 

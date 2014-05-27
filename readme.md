@@ -39,7 +39,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * typography (a set of options to define typography)
 * editor
 
-## Changelog
+## Change log
 
 #### 1.8.0
 
@@ -47,7 +47,6 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Better sanitization of upload option
 * Use filtered values for optionsframework_admin_bar
 * More filters for menu location
-* Update sanitization of html classes (props @satrya)
 
 #### 1.7.2
 

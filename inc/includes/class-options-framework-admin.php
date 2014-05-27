@@ -111,32 +111,20 @@ class Options_Framework_Admin {
 
 		$menu = $this->menu_settings();
 
-        switch( $menu['mode'] ) {
+		// If you want a top level menu, see this Gist:
+		// https://gist.github.com/devinsays/884d6abe92857a329d99
 
-            case 'menu':
-            	// http://codex.wordpress.org/Function_Reference/add_menu_page
-                $this->options_screen = add_menu_page(
-                	$menu['page_title'],
-                	$menu['menu_title'],
-                	$menu['capability'],
-                	$menu['menu_slug'],
-                	array( $this, 'options_page' ),
-                	$menu['icon_url'],
-                	$menu['position']
-                );
-                break;
+		// Code removed because it conflicts with .org theme check.
 
-            default:
-            	// http://codex.wordpress.org/Function_Reference/add_submenu_page
-                $this->options_screen = add_submenu_page(
-                	$menu['parent_slug'],
-                	$menu['page_title'],
-                	$menu['menu_title'],
-                	$menu['capability'],
-                	$menu['menu_slug'],
-                	array( $this, 'options_page' ) );
-                break;
-        }
+		$this->options_screen = add_submenu_page(
+            	$menu['parent_slug'],
+            	$menu['page_title'],
+            	$menu['menu_title'],
+            	$menu['capability'],
+            	$menu['menu_slug'],
+            	array( $this, 'options_page' )
+        );
+
 	}
 
 	/**

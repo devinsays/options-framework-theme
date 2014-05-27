@@ -118,7 +118,7 @@ class Options_Framework_Interface {
 
 			// Basic text input
 			case 'text':
-				$output .= '<input id="' . esc_attr( $value['id'] ) . '" class="of-input" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" type="text" value="' . esc_attr( $val ) . '" />';
+				$output .= '<input id="' . esc_attr( $value['id'] ) . '" class="of-input" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" type="text"'; if(isset($value['plh'])) $output .= ' placeholder="' . $value['plh'] . '"'; $output .= ' value="' . esc_attr( $val ) . '" />';
 				break;
 
 			// Password input
@@ -138,7 +138,7 @@ class Options_Framework_Interface {
 				}
 
 				$val = stripslashes( $val );
-				$output .= '<textarea id="' . esc_attr( $value['id'] ) . '" class="of-input" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" rows="' . $rows . '">' . esc_textarea( $val ) . '</textarea>';
+				$output .= '<textarea id="' . esc_attr( $value['id'] ) . '" class="of-input" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" rows="' . $rows . '"'; if(isset($value['plh'])) $output .= ' placeholder="' . $value['plh'] . '"'; $output .= '>' . esc_textarea( $val ) . '</textarea>';
 				break;
 
 			// Select Box

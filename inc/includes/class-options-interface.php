@@ -75,7 +75,7 @@ class Options_Framework_Interface {
 					$class .= ' ' . $value['class'];
 				}
 
-				$output .= '<div id="' . esc_attr( $id ) .'" class="' . esc_attr( $class ) . '">'."\n";
+				$output .= '<div id="' . esc_attr( $id ) .'" class="' . sanitize_html_class( $class ) . '">'."\n";
 				if ( isset( $value['name'] ) ) {
 					$output .= '<h4 class="heading">' . esc_html( $value['name'] ) . '</h4>' . "\n";
 				}

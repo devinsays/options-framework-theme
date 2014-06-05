@@ -116,8 +116,7 @@ class Options_Framework_Admin {
 
 		// Code removed because it conflicts with .org theme check.
 
-		$this->options_screen = add_submenu_page(
-            	$menu['parent_slug'],
+		$this->options_screen = add_theme_page(
             	$menu['page_title'],
             	$menu['menu_title'],
             	$menu['capability'],

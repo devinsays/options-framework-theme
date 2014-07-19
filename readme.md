@@ -41,6 +41,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 ## Change log
 
+#### 1.8.1
+
+* Remove sanitization of info option and description field
+
 #### 1.8.0
 
 * Fix for colorpicker spacing

@@ -18,52 +18,26 @@ class Options_Framework {
 	const VERSION = '1.8.0';
 
 	/**
-	 * Initialize the plugin.
+	 * Gets option name
 	 *
-	 * @since 1.7.0
+	 * @since 1.9.0
 	 */
-	public function init() {
+	function get_option_name() {
 
-		// Needs to run every time in case theme has been changed
-		add_action( 'admin_init', array( $this, 'set_theme_option' ) );
+		$name = '';
 
-	}
+		// Gets option name as defined in the theme
+		if ( function_exists( 'optionsframework_option_name' ) ) {
+			$name = optionsframework_option_name();
+		}
 
-	/**
-	 * Sets option defaults
-	 *
-	 * @since 1.7.0
-	 */
-	function set_theme_option() {
+		// Fallback
+		if ( '' == $name ) {
+			$name = get_option( 'stylesheet' );
+			$name = preg_replace( "/\W/", "_", strtolower( $name ) );
+		}
 
-		// Load settings
-        $optionsframework_settings = get_option( 'optionsframework' );
-
-        // Updates the unique option id in the database if it has changed
-        if ( function_exists( 'optionsframework_option_name' ) ) {
-			optionsframework_option_name();
-        }
-        elseif ( has_action( 'optionsframework_option_name' ) ) {
-			do_action( 'optionsframework_option_name' );
-        }
-        // If the developer hasn't explicitly set an option id, we'll use a default
-        else {
-            $default_themename = get_option( 'stylesheet' );
-            $default_themename = preg_replace( "/\W/", "_", strtolower($default_themename ) );
-            $default_themename = 'optionsframework_' . $default_themename;
-            if ( isset( $optionsframework_settings['id'] ) ) {
-				if ( $optionsframework_settings['id'] == $default_themename ) {
-					// All good, using default theme id
-				} else {
-					$optionsframework_settings['id'] = $default_themename;
-					update_option( 'optionsframework', $optionsframework_settings );
-				}
-            }
-            else {
-				$optionsframework_settings['id'] = $default_themename;
-				update_option( 'optionsframework', $optionsframework_settings );
-            }
-        }
+		return $name;
 
 	}
 

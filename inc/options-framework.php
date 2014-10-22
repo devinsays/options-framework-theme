@@ -32,8 +32,9 @@ if (is_admin() && ! function_exists( 'optionsframework_init' ) ) :
 function optionsframework_init() {
 
 	//  If user can't edit theme options, exit
-	if ( ! current_user_can( 'edit_theme_options' ) )
+	if ( ! current_user_can( 'edit_theme_options' ) ) {
 		return;
+	}
 
 	// Loads the required Options Framework classes.
 	require plugin_dir_path( __FILE__ ) . 'includes/class-options-framework.php';
@@ -44,7 +45,6 @@ function optionsframework_init() {
 
 	// Instantiate the main plugin class.
 	$options_framework = new Options_Framework;
-	$options_framework->init();
 
 	// Instantiate the options page.
 	$options_framework_admin = new Options_Framework_Admin;

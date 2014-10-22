@@ -37,17 +37,9 @@ class Options_Framework_Interface {
 	static function optionsframework_fields() {
 
 		global $allowedtags;
-		$optionsframework_settings = get_option( 'optionsframework' );
 
-		// Gets the unique option id
-		if ( isset( $optionsframework_settings['id'] ) ) {
-			$option_name = $optionsframework_settings['id'];
-		}
-		else {
-			$option_name = 'optionsframework';
-		};
-
-		$settings = get_option($option_name);
+		$option_name = Options_Framework::get_option_name();
+		$settings = get_option( $option_name );
 		$options = & Options_Framework::_optionsframework_options();
 
 		$counter = 0;

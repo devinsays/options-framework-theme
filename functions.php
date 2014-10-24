@@ -9,6 +9,7 @@
 
 define( 'OPTIONS_FRAMEWORK_DIRECTORY', get_template_directory_uri() . '/inc/' );
 require_once dirname( __FILE__ ) . '/inc/options-framework.php';
+require_once get_template_directory() . '/options.php';
 
 /*
  * This is an example of how to add custom scripts to the options panel.

@@ -41,7 +41,7 @@ class Options_Framework_Interface {
 		$options_framework = new Options_Framework;
 		$option_name = $options_framework->get_option_name();
 		$settings = get_option( $option_name );
-		$options = & $options_framework->_optionsframework_options();
+		$options = & Options_Framework::_optionsframework_options();
 
 		$counter = 0;
 		$menu = '';

@@ -78,7 +78,7 @@ function of_get_option( $name, $default = false ) {
 	// Fallback option name
 	if ( '' == $option_name ) {
 		$option_name = get_option( 'stylesheet' );
-		$option_name = preg_replace( "/\W/", "_", strtolower( $name ) );
+		$option_name = preg_replace( "/\W/", "_", strtolower( $option_name ) );
 	}
 
 	// Get option settings from database

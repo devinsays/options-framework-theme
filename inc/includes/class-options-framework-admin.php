@@ -55,7 +55,8 @@ class Options_Framework_Admin {
     function settings_init() {
 
 		// Get the option name
-	    $name = Options_Framework::get_option_name();
+		$options_framework = new Options_Framework;
+	    $name = $options_framework->get_option_name();
 
 		// Registers the settings fields and callback
 		register_setting( 'optionsframework', $name, array ( $this, 'validate_options' ) );

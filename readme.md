@@ -39,7 +39,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * typography (a set of options to define typography)
 * editor
 
-## Change log
+## Change Log
 
 #### 1.9.0
 

@@ -125,7 +125,7 @@ function of_sanitize_editor( $input ) {
 	}
 	else {
 		global $allowedtags;
-		$output = wpautop( wp_kses( $input, $allowedtags) );
+		$output = wpautop( wp_kses( $input, $allowedtags ) );
 	}
 	return $output;
 }

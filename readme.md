@@ -5,7 +5,7 @@ Tags: options, theme options
 Donate link: http://bit.ly/options-donate-2
 Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 1.9.0
+Stable tag: 1.9.1
 License: GPLv2
 
 ## Description
@@ -40,6 +40,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * editor
 
 ## Change Log
+
+#### 1.9.1
+
+* Update: Use "theme-textdomain" consistently
 
 #### 1.9.0
 

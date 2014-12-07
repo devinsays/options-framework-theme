@@ -153,7 +153,12 @@ class Options_Framework_Admin {
 	        return;
 
 		// Enqueue custom option panel JS
-		wp_enqueue_script( 'options-custom', OPTIONS_FRAMEWORK_DIRECTORY . 'js/options-custom.js', array( 'jquery','wp-color-picker' ), Options_Framework::VERSION );
+		wp_enqueue_script(
+			'options-custom',
+			OPTIONS_FRAMEWORK_DIRECTORY . 'js/options-custom.js',
+			array( 'jquery','wp-color-picker' ),
+			Options_Framework::VERSION
+		);
 
 		// Inline scripts from options-interface.php
 		add_action( 'admin_head', array( $this, 'of_admin_head' ) );

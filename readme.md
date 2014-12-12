@@ -41,6 +41,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 ## Change Log
 
+#### Development
+
+* Update: Change sanitization of editor to use $allowedposttags
+
 #### 1.9.1
 
 * Update: Use "theme-textdomain" consistently

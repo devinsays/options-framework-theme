@@ -39,11 +39,12 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * typography (a set of options to define typography)
 * editor
 
-## Change Log
+## Changelog
 
 #### Development
 
 * Update: Change sanitization of editor to use $allowedposttags
+* Update: Include link button in tinyMCE (props @rosswintle)
 
 #### 1.9.1
 

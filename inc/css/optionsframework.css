@@ -8,6 +8,10 @@
 	cursor: default;
 	background-color: #f1f1f1;
 	border-bottom: 1px solid #ddd;
+	font-size: 14px;
+    	padding: 8px 12px;
+    	margin: 0;
+    	line-height: 1.4;
 }
 #optionsframework p {
 	margin-bottom:0;

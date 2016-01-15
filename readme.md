@@ -45,6 +45,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 * Update: Change sanitization of editor to use $allowedposttags
 * Update: Include link button in tinyMCE (props @rosswintle)
+* Update: Style headers to look nice in WordPress 4.4
 
 #### 1.9.1
 

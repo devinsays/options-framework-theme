@@ -119,6 +119,12 @@ class Options_Framework_Interface {
 			case 'text':
 				$output .= '<input id="' . esc_attr( $value['id'] ) . '" class="of-input" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" type="text" value="' . esc_attr( $val ) . '"' . $placeholder . ' />';
 				break;
+                            
+                        // Basic number input
+			case 'number':
+				$output .= '<input id="' . esc_attr( $value['id'] ) . '" class="of-input" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" type="number" value="' . esc_attr( $val ) . '"' . $placeholder . ' />';
+				break;    
+                            
 
 			// Password input
 			case 'password':
